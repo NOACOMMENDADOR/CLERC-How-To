@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLERC How-To Guides</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf9f6;
+    --grey: #6b7280;
+    --grey-light: #f3f4f6;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 28px rgba(0,0,0,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    background: var(--ink);
+    color: white;
+    padding: 44px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(45,106,79,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(180,83,9,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2d6a4f, #52b788, #f59e0b, #b45309);
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  header p {
+    opacity: 0.65;
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* ── Main ── */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--grey);
+    margin-bottom: 16px;
+    padding-left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Guide Cards ── */
+  .guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .guide-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 52px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .guide-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: #d1d5db;
+  }
+
+  .card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .card-body h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .card-body p {
+    font-size: 13px;
+    color: var(--grey);
+    line-height: 1.45;
+  }
+
+  .card-arrow {
+    font-size: 20px;
+    color: #d1d5db;
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .guide-card:hover .card-arrow {
+    color: var(--ink);
+    transform: translateX(3px);
+  }
+
+  /* Card color themes */
+  .card-icon.green  { background: #d8f3dc; color: #2d6a4f; }
+  .card-icon.amber  { background: #fef3c7; color: #b45309; }
+  .card-icon.purple { background: #ede9fe; color: #7c3aed; }
+
+  /* ── Chip tags ── */
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .tag {
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+  .tag.bloomerang { background: #dbeafe; color: #1e40af; }
+  .tag.drive      { background: #d8f3dc; color: #166534; }
+  .tag.asana      { background: #fce7f3; color: #9d174d; }
+  .tag.email      { background: #f3f4f6; color: #4b5563; }
+  .tag.maps       { background: #ccfbf1; color: #115e59; }
+  .tag.adobe      { background: #fde8e8; color: #991b1b; }
+  .tag.cslb       { background: #fef3c7; color: #92400e; }
+
+  /* ── Empty state / future ── */
+  .coming-soon {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--grey);
+    font-size: 14px;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+  }
+  .coming-soon strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #b0b5bd;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    header { padding: 32px 20px; }
+    header h1 { font-size: 1.6rem; }
+    .logo { width: 140px; }
+    .guide-card {
+      grid-template-columns: 44px 1fr auto;
+      padding: 18px 18px;
+      gap: 14px;
+    }
+    .card-icon { width: 44px; height: 44px; font-size: 20px; border-radius: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <img
+      src="https://raw.githubusercontent.com/NOACOMMENDADOR/CLERC-How-To/main/Copy%20of%20CLERC%20Logo%20Large.png"
+      alt="CLERC Logo"
+      class="logo"
+    />
+    <h1>How-To Guides</h1>
+    <p>Step-by-step process guides for CLERC staff. Find the procedure you need and follow along.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-label">Available Guides</div>
+
+  <div class="guide-grid">
+
+    <!-- ROE Intake -->
+    <a class="guide-card" href="ROE-intake-process.html">
+      <div class="card-icon green">&#128196;</div>
+      <div class="card-body">
+        <h3>Right of Entry (ROE) Processing</h3>
+        <p>How to receive, verify, process, and record ROE forms — both physical mail and digital submissions.</p>
+        <div class="card-tags">
+          <span class="tag bloomerang">Bloomerang</span>
+          <span class="tag drive">Google Drive</span>
+          <span class="tag maps">MyMaps</span>
+          <span class="tag adobe">Adobe Acrobat</span>
+          <span class="tag email">Email</span>
+        </div>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <!-- Chipping Intake -->
+    <a class="guide-card" href="chipping-intake-guide.html">
+      <div class="card-icon amber">&#127794;</div>
+      <div class="card-body">
+        <h3>Chipping Request Intake</h3>
+        <p>How to intake and process chipping requests from online form submissions or mailed-in physical forms.</p>
+        <div class="card-tags">
+          <span class="tag bloomerang">Bloomerang</span>
+          <span class="tag asana">Asana</span>
+          <span class="tag email">Email</span>
+        </div>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <!-- Contractor Pre-Qual -->
+    <a class="guide-card" href="contractor-prequal-process.html">
+      <div class="card-icon purple">&#128203;</div>
+      <div class="card-body">
+        <h3>Contractor Pre-Qualification</h3>
+        <p>How to review, verify, and pre-qualify contractors including license checks, document storage, and CRM updates.</p>
+        <div class="card-tags">
+          <span class="tag bloomerang">Bloomerang</span>
+          <span class="tag drive">Google Drive</span>
+          <span class="tag cslb">CSLB Lookup</span>
+          <span class="tag email">Email</span>
+        </div>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+  </div>
+
+  <!-- Placeholder for future guides -->
+  <div class="section-label">More Coming Soon</div>
+  <div class="coming-soon">
+    <strong>New guides will appear here as they're added.</strong>
+    To add a guide, create an HTML file in the repository and add a new card block above.
+  </div>
+
+</main>
+
+<footer>
+  CLERC &middot; Internal Staff Guides
+</footer>
+
+</body>
+</html>
