@@ -28,7 +28,7 @@
     min-height: 100vh;
   }
 
-  /* ── Header ── */
+  /* -- Header -- */
   header {
     background: var(--ink);
     color: white;
@@ -83,14 +83,14 @@
     line-height: 1.55;
   }
 
-  /* ── Main ── */
+  /* -- Main -- */
   main {
     max-width: 820px;
     margin: 0 auto;
     padding: 40px 24px 80px;
   }
 
-  /* ── Section label ── */
+  /* -- Section label -- */
   .section-label {
     font-size: 11px;
     font-weight: 700;
@@ -110,7 +110,7 @@
     background: var(--border);
   }
 
-  /* ── Guide Cards ── */
+  /* -- Guide Cards -- */
   .guide-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -176,8 +176,9 @@
   .card-icon.green  { background: #d8f3dc; color: #2d6a4f; }
   .card-icon.amber  { background: #fef3c7; color: #b45309; }
   .card-icon.purple { background: #ede9fe; color: #7c3aed; }
+  .card-icon.blue   { background: #dbeafe; color: #2563eb; }
 
-  /* ── Chip tags ── */
+  /* -- Chip tags -- */
   .card-tags {
     display: flex;
     flex-wrap: wrap;
@@ -198,8 +199,10 @@
   .tag.maps       { background: #ccfbf1; color: #115e59; }
   .tag.adobe      { background: #fde8e8; color: #991b1b; }
   .tag.cslb       { background: #fef3c7; color: #92400e; }
+  .tag.intune     { background: #dbeafe; color: #1d4ed8; }
+  .tag.windows    { background: #e0e7ff; color: #3730a3; }
 
-  /* ── Empty state / future ── */
+  /* -- Empty state / future -- */
   .coming-soon {
     text-align: center;
     padding: 32px 20px;
@@ -215,7 +218,7 @@
     color: var(--ink);
   }
 
-  /* ── Footer ── */
+  /* -- Footer -- */
   footer {
     text-align: center;
     padding: 24px;
@@ -224,7 +227,7 @@
     border-top: 1px solid var(--border);
   }
 
-  /* ── Responsive ── */
+  /* -- Responsive -- */
   @media (max-width: 640px) {
     header { padding: 32px 20px; }
     header h1 { font-size: 1.6rem; }
@@ -301,6 +304,20 @@
           <span class="tag drive">Google Drive</span>
           <span class="tag cslb">CSLB Lookup</span>
           <span class="tag email">Email</span>
+        </div>
+      </div>
+      <span class="card-arrow">&#8594;</span>
+    </a>
+
+    <!-- Intune Win32 Deployment -->
+    <a class="guide-card" href="intune-win32-deployment.html">
+      <div class="card-icon blue">&#128187;</div>
+      <div class="card-body">
+        <h3>Software Deployment via Intune</h3>
+        <p>How to package and deploy desktop software to company computers through Microsoft Intune using the Win32 app format.</p>
+        <div class="card-tags">
+          <span class="tag intune">Intune</span>
+          <span class="tag windows">Windows</span>
         </div>
       </div>
       <span class="card-arrow">&#8594;</span>
