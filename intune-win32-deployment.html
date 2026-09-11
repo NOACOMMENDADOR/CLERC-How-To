@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intune Win32 App Deployment Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #faf9f6;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --accent-mid: #60a5fa;
+    --warm: #e8d5b7;
+    --warm-dark: #c9a96e;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --green: #2d6a4f;
+    --green-light: #d8f3dc;
+    --grey: #6b7280;
+    --grey-light: #f3f4f6;
+    --border: #e5e7eb;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 15px;
+  }
+
+  /* -- Header -- */
+  header {
+    background: var(--ink);
+    color: white;
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-mid), var(--teal));
+  }
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  header p {
+    opacity: 0.7;
+    font-size: 14px;
+    max-width: 600px;
+  }
+
+  /* -- Layout -- */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 140px);
+  }
+
+  /* -- Sidebar -- */
+  nav {
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: white;
+    font-size: 13px;
+  }
+  nav .nav-group {
+    padding: 0 16px;
+    margin-bottom: 20px;
+  }
+  nav .nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--grey);
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  nav a {
+    display: block;
+    padding: 5px 10px;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.15s;
+    line-height: 1.4;
+  }
+  nav a:hover { background: var(--grey-light); }
+  nav a.step-link { border-left: 3px solid var(--accent); padding-left: 7px; }
+
+  /* -- Main -- */
+  main {
+    padding: 36px 48px 80px;
+    max-width: 820px;
+  }
+
+  /* -- Purpose Box -- */
+  .purpose-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow);
+  }
+  .purpose-box h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .purpose-box p { color: var(--grey); font-size: 14px; }
+
+  /* -- Systems Chips -- */
+  .systems {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--grey-light);
+    color: var(--ink);
+    border: 1px solid var(--border);
+  }
+  .chip .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+  }
+
+  /* -- Process Overview -- */
+  .process-overview {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow);
+  }
+  .process-overview h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .flow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .flow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+  }
+  .flow-step .flow-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .flow-step .flow-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .flow-arrow {
+    font-size: 18px;
+    color: var(--border);
+    margin: 0 2px;
+    padding-bottom: 18px;
+  }
+
+  /* -- Section Headers -- */
+  .section-header {
+    margin: 44px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header .badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* -- Step Cards -- */
+  .step {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .step-num {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    background: var(--accent);
+    color: white;
+  }
+
+  .step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-top: 4px;
+  }
+  .step p { margin-bottom: 8px; color: #374151; font-size: 14px; }
+  .step ul, .step ol {
+    padding-left: 20px;
+    margin: 8px 0;
+    color: #374151;
+    font-size: 14px;
+  }
+  .step li { margin-bottom: 4px; }
+  .step li li { margin-bottom: 2px; }
+
+  /* -- Callout Boxes -- */
+  .callout {
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .callout.tip { background: var(--accent-light); color: #1e40af; }
+  .callout.warn { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
+  .callout.info { background: var(--green-light); color: #1b4332; }
+  .callout.teal { background: var(--teal-light); color: #134e4a; }
+  .callout .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  /* -- Naming Convention / Command Box -- */
+  .convention {
+    background: var(--ink);
+    color: white;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'DM Sans', monospace;
+    font-size: 13px;
+    margin: 10px 0;
+    letter-spacing: 0.02em;
+  }
+  .convention span { color: var(--accent-mid); }
+
+  /* -- Path / Drive Box -- */
+  .path-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-family: 'DM Sans', monospace;
+    margin: 10px 0;
+    color: var(--ink);
+    word-break: break-all;
+  }
+  .path-box strong { font-weight: 600; }
+
+  /* -- Inline Link -- */
+  .inline-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    word-break: break-all;
+  }
+
+  /* -- Conditional Block -- */
+  .conditional {
+    border-left: 3px solid var(--warm-dark);
+    padding-left: 16px;
+    margin: 12px 0;
+  }
+  .conditional-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--warm-dark);
+    margin-bottom: 6px;
+  }
+
+  /* -- Sub-step Cards -- */
+  .substep {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 12px 0;
+  }
+  .substep strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: var(--accent);
+  }
+  .substep p, .substep ul, .substep ol {
+    font-size: 13px;
+    color: #374151;
+  }
+
+  /* -- Verify Items -- */
+  .verify-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .verify-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .verify-card strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+  .verify-card span {
+    font-size: 12px;
+    color: var(--grey);
+    line-height: 1.4;
+    display: block;
+  }
+
+  /* -- Checklist -- */
+  .checklist-section {
+    background: white;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    padding: 28px;
+    margin-top: 44px;
+    box-shadow: var(--shadow-md);
+  }
+  .checklist-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .check-group {
+    margin-bottom: 14px;
+  }
+  .check-group-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 13.5px;
+    color: #374151;
+  }
+  .check-item input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* -- Quick Reference Table -- */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .ref-table th {
+    background: var(--grey-light);
+    text-align: left;
+    padding: 8px 12px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+  }
+  .ref-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+
+  /* -- Responsive -- */
+  @media (max-width: 800px) {
+    .layout { grid-template-columns: 1fr; }
+    nav { display: none; }
+    main { padding: 24px 20px 60px; }
+    header { padding: 32px 20px; }
+    .verify-grid { grid-template-columns: 1fr; }
+    .flow-steps { gap: 0; }
+    .flow-step { width: 80px; }
+    .flow-arrow { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<!-- Back to Home -->
+<a href="index.html" style="
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  margin: 12px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  background: transparent;
+" onmouseover="this.style.background='#f3f4f6';this.style.color='#1a1a2e'" onmouseout="this.style.background='transparent';this.style.color='#6b7280'">&#8592; All Guides</a>
+<header>
+  <h1>Deploying Software via Microsoft Intune</h1>
+  <p>Standard operating procedure for packaging and deploying desktop software through Microsoft Intune using the Win32 app format.</p>
+</header>
+
+<div class="layout">
+
+<!-- -- Sidebar -- -->
+<nav>
+  <div class="nav-group">
+    <div class="nav-label">Overview</div>
+    <a href="#purpose">Purpose &amp; Prerequisites</a>
+    <a href="#overview">Process at a Glance</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Steps</div>
+    <a class="step-link" href="#s1">1 &middot; Content Prep Tool</a>
+    <a class="step-link" href="#s2">2 &middot; Prepare Installer</a>
+    <a class="step-link" href="#s3">3 &middot; Package Installer</a>
+    <a class="step-link" href="#s4">4 &middot; Add App to Intune</a>
+    <a class="step-link" href="#s5">5 &middot; Deployment Timeline</a>
+    <a class="step-link" href="#s6">6 &middot; Verify Deployment</a>
+  </div>
+  <div class="nav-group">
+    <div class="nav-label">Reference</div>
+    <a href="#quick-ref">Installer Sources</a>
+    <a href="#checklist">Completion Checklist</a>
+  </div>
+</nav>
+
+<!-- -- Main Content -- -->
+<main>
+
+  <!-- Purpose -->
+  <div class="purpose-box" id="purpose">
+    <h2>Purpose</h2>
+    <p>Package and deploy desktop software to company computers through Microsoft Intune using the Win32 app format. This method works for both .msi and .exe installers and ensures that apps automatically install on any device enrolled in Intune when assigned as Required.</p>
+    <div class="systems">
+      <span class="chip"><span class="dot"></span>Microsoft Intune</span>
+      <span class="chip"><span class="dot"></span>Win32 Content Prep Tool</span>
+      <span class="chip"><span class="dot"></span>Windows Admin Machine</span>
+    </div>
+  </div>
+
+  <!-- Prerequisites -->
+  <div class="step" style="margin-bottom:36px;">
+    <h3>Prerequisites</h3>
+    <div class="verify-grid">
+      <div class="verify-card">
+        <strong>Intune Admin Access</strong>
+        <span>Access to intune.microsoft.com</span>
+      </div>
+      <div class="verify-card">
+        <strong>Windows Computer</strong>
+        <span>For running the packaging tool</span>
+      </div>
+      <div class="verify-card">
+        <strong>Win32 Content Prep Tool</strong>
+        <span>Downloaded from GitHub (see Section 1)</span>
+      </div>
+      <div class="verify-card">
+        <strong>Software Installer</strong>
+        <span>The .msi or .exe file you want to deploy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process Overview -->
+  <div class="process-overview" id="overview">
+    <h2>Process at a Glance</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-icon">&#128229;</div>
+        <span class="flow-label">Download Prep Tool</span>
+      </div>
+      <span class="flow-arrow">&#10142;</span>
+      <div class="flow-step">
+        <div class="flow-icon">&#128193;</div>
+        <span class="flow-label">Prepare Installer</span>
+      </div>
+      <span class="flow-arrow">&#10142;</span>
+      <div class="flow-step">
+        <div class="flow-icon">&#128230;</div>
+        <span class="flow-label">Package (.intunewin)</span>
+      </div>
+      <span class="flow-arrow">&#10142;</span>
+      <div class="flow-step">
+        <div class="flow-icon">&#9729;</div>
+        <span class="flow-label">Add to Intune</span>
+      </div>
+      <span class="flow-arrow">&#10142;</span>
+      <div class="flow-step">
+        <div class="flow-icon">&#9989;</div>
+        <span class="flow-label">Verify Deploy</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- =============== SECTION 1 =============== -->
+  <div class="section-header" id="s1">
+    <h2><span class="badge">Section 1</span> Download the Win32 Content Prep Tool</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1.1</div>
+    <h3>Download and Extract the Tool</h3>
+    <p>The Win32 Content Prep Tool is a Microsoft utility that converts installers into the .intunewin format Intune requires. You only need to download this once per admin machine.</p>
+    <ol>
+      <li>Go to <a class="inline-link" href="https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool" target="_blank">github.com/microsoft/Microsoft-Win32-Content-Prep-Tool</a></li>
+      <li>Click the green <strong>Code</strong> button, then click <strong>Download ZIP</strong>.</li>
+      <li>Extract the ZIP file. Inside you will find <strong>IntuneWinAppUtil.exe</strong>.</li>
+      <li>Keep this file in a permanent location on your admin machine (e.g., <code>C:\IntuneTools\</code>). No installation is required.</li>
+    </ol>
+    <div class="callout tip">
+      <span class="callout-icon">&#128161;</span>
+      <div><strong>One-time setup:</strong> This tool only needs to be downloaded once. Keep it in a consistent location so it's ready whenever you need to package a new app.</div>
+    </div>
+  </div>
+
+
+  <!-- =============== SECTION 2 =============== -->
+  <div class="section-header" id="s2">
+    <h2><span class="badge">Section 2</span> Prepare the Installer</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2.1</div>
+    <h3>Set Up the App Folder</h3>
+    <p>Each app you want to deploy needs its installer file placed in its own dedicated folder.</p>
+    <ol>
+      <li>Create a folder for the app:</li>
+    </ol>
+    <div class="path-box"><strong>Example:</strong> C:\IntuneApps\Chrome</div>
+    <ol start="2">
+      <li>Download the enterprise installer for your software and place it in that folder.</li>
+    </ol>
+
+    <div class="substep">
+      <strong>Example: Google Chrome</strong>
+      <ol>
+        <li>Download the Chrome enterprise .msi from <a class="inline-link" href="https://chromeenterprise.google/download/" target="_blank">chromeenterprise.google/download</a></li>
+        <li>Select the <strong>64-bit .msi</strong> installer.</li>
+        <li>Place the downloaded file (e.g., <code>googlechromestandaloneenterprise64.msi</code>) in your app folder.</li>
+      </ol>
+    </div>
+
+    <div class="callout warn">
+      <span class="callout-icon">&#9888;</span>
+      <div>Each app should have its own separate folder containing only its installer file. Do not mix multiple installers in one folder.</div>
+    </div>
+  </div>
+
+
+  <!-- =============== SECTION 3 =============== -->
+  <div class="section-header" id="s3">
+    <h2><span class="badge">Section 3</span> Package the Installer</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3.1</div>
+    <h3>Run the Content Prep Tool</h3>
+    <ol>
+      <li>Open the folder where you extracted the Win32 Content Prep Tool.</li>
+      <li>Double-click <strong>IntuneWinAppUtil.exe</strong> to launch it.</li>
+      <li>Answer the prompts:</li>
+    </ol>
+
+    <div class="convention">
+      <span>Source folder:</span> C:\IntuneApps<br>
+      <span>Setup file:</span> googlechromestandaloneenterprise64.msi<br>
+      <span>Output folder:</span> C:\IntuneApps\Output<br>
+      <span>Catalog folder?</span> N
+    </div>
+
+    <ol start="4">
+      <li>The tool will process for a few seconds and create a <strong>.intunewin</strong> file in your output folder.</li>
+      <li>Repeat steps 2-4 for each additional installer you need to package.</li>
+    </ol>
+  </div>
+
+
+  <!-- =============== SECTION 4 =============== -->
+  <div class="section-header" id="s4">
+    <h2><span class="badge">Section 4</span> Add the App to Intune</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4.1</div>
+    <h3>Create the Win32 App</h3>
+    <ol>
+      <li>Sign in to <a class="inline-link" href="https://intune.microsoft.com" target="_blank">intune.microsoft.com</a></li>
+      <li>Navigate to <strong>Apps &gt; All apps &gt; Create</strong></li>
+      <li>For App type, select <strong>Windows app (Win32)</strong>, then click <strong>Select</strong>.</li>
+      <li>Click <strong>Select app package file</strong>, browse to your .intunewin file, and click <strong>OK</strong>.</li>
+    </ol>
+  </div>
+
+  <!-- 4a -->
+  <div class="step">
+    <div class="step-num">4a</div>
+    <h3>App Information</h3>
+    <p>The Name, Description, and Publisher fields will auto-fill from the installer metadata (for .msi files). Review these fields and click <strong>Next</strong>.</p>
+    <div class="callout tip">
+      <span class="callout-icon">&#128161;</span>
+      <div>You may need to manually enter the publisher name if it doesn't auto-populate.</div>
+    </div>
+  </div>
+
+  <!-- 4b -->
+  <div class="step">
+    <div class="step-num">4b</div>
+    <h3>Program</h3>
+
+    <div class="conditional">
+      <div class="conditional-label">For .msi installers</div>
+      <p>Intune will auto-populate the install and uninstall commands:</p>
+      <div class="convention">
+        <span>Install:</span> msiexec /i "filename.msi" /qn<br>
+        <span>Uninstall:</span> msiexec /x "filename.msi" /qn
+      </div>
+      <p>Leave these as-is. They are correct.</p>
+    </div>
+
+    <div class="conditional" style="margin-top:14px;">
+      <div class="conditional-label">For .exe installers</div>
+      <p>You must manually enter the commands. The silent install flag varies by software. Common examples:</p>
+      <div class="convention">
+        setup.exe <span>--silent</span><br>
+        setup.exe <span>/S</span><br>
+        setup.exe <span>/quiet</span>
+      </div>
+      <div class="callout tip">
+        <span class="callout-icon">&#128161;</span>
+        <div>Check the software vendor's documentation for the correct silent install flag for .exe installers.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:12px;">Set <strong>Install behavior</strong> to <strong>System</strong>. Leave remaining fields as defaults. Click <strong>Next</strong>.</p>
+  </div>
+
+  <!-- 4c -->
+  <div class="step">
+    <div class="step-num">4c</div>
+    <h3>Requirements</h3>
+    <ul>
+      <li><strong>Operating system architecture:</strong> Check <strong>64-bit</strong></li>
+      <li><strong>Minimum operating system:</strong> Select the lowest OS version in your fleet (e.g., Windows 10 1607)</li>
+    </ul>
+    <p>Click <strong>Next</strong>.</p>
+  </div>
+
+  <!-- 4d -->
+  <div class="step">
+    <div class="step-num">4d</div>
+    <h3>Detection Rules</h3>
+    <p>Detection rules tell Intune how to determine whether the app is already installed on a device. This prevents reinstalling software that is already present.</p>
+    <p>For all installers (.msi and .exe), use a <strong>file-based detection rule</strong>:</p>
+    <ol>
+      <li>Set Rules format to <strong>Manually configure detection rules</strong>.</li>
+      <li>Click <strong>Add</strong>.</li>
+      <li>Set Rule type to <strong>File</strong>.</li>
+      <li><strong>Path:</strong> Enter the install directory (e.g., <code>C:\Program Files\Google\Chrome\Application</code>)</li>
+      <li><strong>File or folder:</strong> Enter a file that confirms the app is installed (e.g., <code>chrome.exe</code>)</li>
+      <li><strong>Detection method:</strong> Select <strong>File or folder exists</strong>.</li>
+      <li>Click <strong>OK</strong>, then <strong>Next</strong>.</li>
+    </ol>
+
+    <div class="callout warn">
+      <span class="callout-icon">&#9888;</span>
+      <div><strong>Do not use MSI detection rules</strong>, even for .msi installers. MSI product codes are version-specific, so if the app auto-updates itself (as Chrome and many other apps do), the detection rule will stop matching and Intune will try to reinstall.</div>
+    </div>
+    <div class="callout warn">
+      <span class="callout-icon">&#9888;</span>
+      <div><strong>Avoid version-numbered paths</strong> (e.g., <code>130.0.2.0</code>) because the path will change when the app updates and the detection rule will break. Use a stable file in the application's root install directory.</div>
+    </div>
+    <div class="callout tip">
+      <span class="callout-icon">&#128161;</span>
+      <div>To find the correct detection path, check a machine that already has the app installed and note where its main executable lives.</div>
+    </div>
+  </div>
+
+  <!-- 4e -->
+  <div class="step">
+    <div class="step-num">4e</div>
+    <h3>Dependencies and Supersedence</h3>
+    <p>Skip both of these pages. Click <strong>Next</strong> on each.</p>
+  </div>
+
+  <!-- 4f -->
+  <div class="step">
+    <div class="step-num">4f</div>
+    <h3>Assignments</h3>
+    <ol>
+      <li>Under <strong>Required</strong>, click <strong>Add group</strong>.</li>
+      <li>Select your device group (e.g., CLERC Windows Devices) or choose <strong>All Devices</strong>.</li>
+      <li>Click <strong>Next</strong>.</li>
+    </ol>
+
+    <div class="substep">
+      <strong>Assignment types explained</strong>
+      <ul>
+        <li><strong>Required</strong> = Intune pushes the app automatically. No user action needed. Use this for standard company software.</li>
+        <li><strong>Available for enrolled devices</strong> = App appears in Company Portal for users to install on their own. Use this for optional software.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 4g -->
+  <div class="step">
+    <div class="step-num">4g</div>
+    <h3>Review and Create</h3>
+    <p>Review all settings, then click <strong>Create</strong>. Intune will upload the package and begin deploying it to assigned devices on the next sync cycle.</p>
+  </div>
+
+
+  <!-- =============== SECTION 5 =============== -->
+  <div class="section-header" id="s5">
+    <h2><span class="badge">Section 5</span> Deployment Timeline</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5.1</div>
+    <h3>When Devices Receive the App</h3>
+    <p>After creating the app assignment:</p>
+    <ul>
+      <li><strong>Newly enrolled devices</strong> will receive the app immediately during their first sync.</li>
+      <li><strong>Existing devices</strong> will receive the app on their next Intune policy refresh cycle (approximately every 8 hours).</li>
+      <li>Devices that already have the app installed will be detected by the detection rule and skipped.</li>
+    </ul>
+
+    <div class="callout teal">
+      <span class="callout-icon">&#9889;</span>
+      <div><strong>Force immediate sync on a device:</strong> Settings &gt; Accounts &gt; Access work or school &gt; Info &gt; Sync</div>
+    </div>
+  </div>
+
+
+  <!-- =============== SECTION 6 =============== -->
+  <div class="section-header" id="s6">
+    <h2><span class="badge">Section 6</span> Verifying Deployment Status</h2>
+  </div>
+
+  <div class="step">
+    <div class="step-num">6.1</div>
+    <h3>Check Install Status</h3>
+    <ol>
+      <li>In Intune, go to <strong>Apps &gt; All apps</strong>.</li>
+      <li>Click on the app you deployed.</li>
+      <li>Click <strong>Device install status</strong> to see which devices have successfully installed the app, which are pending, and which have failed.</li>
+    </ol>
+  </div>
+
+
+  <!-- =============== QUICK REFERENCE =============== -->
+  <div class="section-header" id="quick-ref" style="border-bottom-color: var(--teal);">
+    <h2>Common Enterprise Installer Sources</h2>
+  </div>
+
+  <div class="step">
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Software</th>
+          <th>Source</th>
+          <th>Format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Chrome</td>
+          <td><a class="inline-link" href="https://chromeenterprise.google/download/" target="_blank">chromeenterprise.google/download</a></td>
+          <td>.msi</td>
+        </tr>
+        <tr>
+          <td>Google Drive for Desktop</td>
+          <td><a class="inline-link" href="https://support.google.com/a/answer/7491144" target="_blank">support.google.com/a/answer/7491144</a></td>
+          <td>.exe</td>
+        </tr>
+        <tr>
+          <td>Adobe Acrobat (licensed)</td>
+          <td><a class="inline-link" href="https://adminconsole.adobe.com" target="_blank">adminconsole.adobe.com</a> &gt; Packages &gt; Create a Package</td>
+          <td>Custom</td>
+        </tr>
+        <tr>
+          <td>Win32 Content Prep Tool</td>
+          <td><a class="inline-link" href="https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool" target="_blank">github.com/microsoft/Microsoft-Win32-Content-Prep-Tool</a></td>
+          <td>.exe</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- =============== CHECKLIST =============== -->
+  <div class="checklist-section" id="checklist">
+    <h2>&#9989; Completion Checklist</h2>
+    <p style="text-align:center; font-size:13px; color:var(--grey); margin-bottom:18px;">Confirm all items before closing the deployment process.</p>
+
+    <div class="check-group">
+      <div class="check-group-title">&#128230; Packaging</div>
+      <label class="check-item"><input type="checkbox"> Installer downloaded and placed in dedicated folder</label>
+      <label class="check-item"><input type="checkbox"> Content Prep Tool run successfully</label>
+      <label class="check-item"><input type="checkbox"> .intunewin file generated in output folder</label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">&#9729; Intune Configuration</div>
+      <label class="check-item"><input type="checkbox"> Win32 app created in Intune</label>
+      <label class="check-item"><input type="checkbox"> Install/uninstall commands verified</label>
+      <label class="check-item"><input type="checkbox"> Install behavior set to System</label>
+      <label class="check-item"><input type="checkbox"> Architecture set to 64-bit</label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">&#128269; Detection Rules</div>
+      <label class="check-item"><input type="checkbox"> File-based detection rule configured (not MSI)</label>
+      <label class="check-item"><input type="checkbox"> Detection path uses stable directory (no version numbers)</label>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">&#128187; Assignment &amp; Deployment</div>
+      <label class="check-item"><input type="checkbox"> App assigned to correct device group</label>
+      <label class="check-item"><input type="checkbox"> Assignment type set correctly (Required or Available)</label>
+      <label class="check-item"><input type="checkbox"> Deployment status checked after first sync cycle</label>
+    </div>
+  </div>
+
+</main>
+</div>
+
+</body>
+</html>
