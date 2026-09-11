@@ -90,44 +90,86 @@
     padding: 40px 24px 80px;
   }
 
-  /* -- Section label -- */
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--grey);
+  /* -- Category Accordion -- */
+  .category {
     margin-bottom: 16px;
-    padding-left: 4px;
+  }
+
+  .category summary {
+    list-style: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 14px 18px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    user-select: none;
   }
-  .section-label::after {
-    content: '';
+  .category summary:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #d1d5db;
+  }
+  .category summary::-webkit-details-marker { display: none; }
+
+  .category-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .category-icon.ops   { background: #d8f3dc; color: #2d6a4f; }
+  .category-icon.it    { background: #dbeafe; color: #2563eb; }
+
+  .category-label {
     flex: 1;
-    height: 1px;
-    background: var(--border);
+  }
+  .category-label h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+  .category-label span {
+    font-size: 12px;
+    color: var(--grey);
+  }
+
+  .chevron {
+    font-size: 18px;
+    color: #d1d5db;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .category[open] .chevron {
+    transform: rotate(90deg);
+  }
+
+  .category-guides {
+    padding: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   /* -- Guide Cards -- */
-  .guide-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 48px;
-  }
-
   .guide-card {
     background: white;
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 24px 28px;
+    padding: 20px 24px;
     box-shadow: var(--shadow);
     display: grid;
-    grid-template-columns: 52px 1fr auto;
+    grid-template-columns: 44px 1fr auto;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     text-decoration: none;
     color: var(--ink);
     transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
@@ -140,29 +182,29 @@
   }
 
   .card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 20px;
     flex-shrink: 0;
   }
 
   .card-body h3 {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     margin-bottom: 3px;
   }
   .card-body p {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--grey);
     line-height: 1.45;
   }
 
   .card-arrow {
-    font-size: 20px;
+    font-size: 18px;
     color: #d1d5db;
     transition: color 0.2s, transform 0.2s;
     flex-shrink: 0;
@@ -177,18 +219,19 @@
   .card-icon.amber  { background: #fef3c7; color: #b45309; }
   .card-icon.purple { background: #ede9fe; color: #7c3aed; }
   .card-icon.blue   { background: #dbeafe; color: #2563eb; }
+  .card-icon.red    { background: #fef2f2; color: #dc2626; }
 
   /* -- Chip tags -- */
   .card-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 6px;
+    gap: 4px;
+    margin-top: 5px;
   }
   .tag {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 600;
-    padding: 2px 8px;
+    padding: 1px 7px;
     border-radius: 4px;
     letter-spacing: 0.03em;
   }
@@ -201,19 +244,21 @@
   .tag.cslb       { background: #fef3c7; color: #92400e; }
   .tag.intune     { background: #dbeafe; color: #1d4ed8; }
   .tag.windows    { background: #e0e7ff; color: #3730a3; }
+  .tag.lastpass   { background: #fef2f2; color: #b91c1c; }
 
   /* -- Empty state / future -- */
   .coming-soon {
     text-align: center;
-    padding: 32px 20px;
+    padding: 28px 20px;
     color: var(--grey);
-    font-size: 14px;
+    font-size: 13px;
     border: 2px dashed var(--border);
     border-radius: 12px;
+    margin-top: 32px;
   }
   .coming-soon strong {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 4px;
     color: var(--ink);
   }
@@ -233,11 +278,11 @@
     header h1 { font-size: 1.6rem; }
     .logo { width: 140px; }
     .guide-card {
-      grid-template-columns: 44px 1fr auto;
-      padding: 18px 18px;
-      gap: 14px;
+      grid-template-columns: 38px 1fr auto;
+      padding: 16px 16px;
+      gap: 12px;
     }
-    .card-icon { width: 44px; height: 44px; font-size: 20px; border-radius: 10px; }
+    .card-icon { width: 38px; height: 38px; font-size: 18px; border-radius: 8px; }
   }
 </style>
 </head>
@@ -257,79 +302,117 @@
 
 <main>
 
-  <div class="section-label">Available Guides</div>
-
-  <div class="guide-grid">
-
-    <!-- ROE Intake -->
-    <a class="guide-card" href="ROE-intake-process.html">
-      <div class="card-icon green">&#128196;</div>
-      <div class="card-body">
-        <h3>Right of Entry (ROE) Processing</h3>
-        <p>How to receive, verify, process, and record ROE forms — both physical mail and digital submissions.</p>
-        <div class="card-tags">
-          <span class="tag bloomerang">Bloomerang</span>
-          <span class="tag drive">Google Drive</span>
-          <span class="tag maps">MyMaps</span>
-          <span class="tag adobe">Adobe Acrobat</span>
-          <span class="tag email">Email</span>
-        </div>
+  <!-- ═══ OPERATIONS ═══ -->
+  <details class="category" open>
+    <summary>
+      <div class="category-icon ops">&#127793;</div>
+      <div class="category-label">
+        <h2>Operations</h2>
+        <span>ROE processing, chipping intake, contractor management</span>
       </div>
-      <span class="card-arrow">&#8594;</span>
-    </a>
+      <span class="chevron">&#9654;</span>
+    </summary>
 
-    <!-- Chipping Intake -->
-    <a class="guide-card" href="chipping-intake-guide.html">
-      <div class="card-icon amber">&#127794;</div>
-      <div class="card-body">
-        <h3>Chipping Request Intake</h3>
-        <p>How to intake and process chipping requests from online form submissions or mailed-in physical forms.</p>
-        <div class="card-tags">
-          <span class="tag bloomerang">Bloomerang</span>
-          <span class="tag asana">Asana</span>
-          <span class="tag email">Email</span>
+    <div class="category-guides">
+
+      <!-- ROE Intake -->
+      <a class="guide-card" href="ROE-intake-process.html">
+        <div class="card-icon green">&#128196;</div>
+        <div class="card-body">
+          <h3>Right of Entry (ROE) Processing</h3>
+          <p>How to receive, verify, process, and record ROE forms from physical mail and digital submissions.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag drive">Google Drive</span>
+            <span class="tag maps">MyMaps</span>
+            <span class="tag adobe">Adobe Acrobat</span>
+            <span class="tag email">Email</span>
+          </div>
         </div>
-      </div>
-      <span class="card-arrow">&#8594;</span>
-    </a>
+        <span class="card-arrow">&#8594;</span>
+      </a>
 
-    <!-- Contractor Pre-Qual -->
-    <a class="guide-card" href="Contractor-PreQual-Process.html">
-      <div class="card-icon purple">&#128203;</div>
-      <div class="card-body">
-        <h3>Contractor Pre-Qualification</h3>
-        <p>How to review, verify, and pre-qualify contractors including license checks, document storage, and CRM updates.</p>
-        <div class="card-tags">
-          <span class="tag bloomerang">Bloomerang</span>
-          <span class="tag drive">Google Drive</span>
-          <span class="tag cslb">CSLB Lookup</span>
-          <span class="tag email">Email</span>
+      <!-- Chipping Intake -->
+      <a class="guide-card" href="chipping-intake-guide.html">
+        <div class="card-icon amber">&#127794;</div>
+        <div class="card-body">
+          <h3>Chipping Request Intake</h3>
+          <p>How to intake and process chipping requests from online form submissions or mailed-in physical forms.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag asana">Asana</span>
+            <span class="tag email">Email</span>
+          </div>
         </div>
-      </div>
-      <span class="card-arrow">&#8594;</span>
-    </a>
+        <span class="card-arrow">&#8594;</span>
+      </a>
 
-    <!-- Intune Win32 Deployment -->
-    <a class="guide-card" href="intune-win32-deployment.html">
-      <div class="card-icon blue">&#128187;</div>
-      <div class="card-body">
-        <h3>Software Deployment via Intune</h3>
-        <p>How to package and deploy desktop software to company computers through Microsoft Intune using the Win32 app format.</p>
-        <div class="card-tags">
-          <span class="tag intune">Intune</span>
-          <span class="tag windows">Windows</span>
+      <!-- Contractor Pre-Qual -->
+      <a class="guide-card" href="Contractor-PreQual-Process.html">
+        <div class="card-icon purple">&#128203;</div>
+        <div class="card-body">
+          <h3>Contractor Pre-Qualification</h3>
+          <p>How to review, verify, and pre-qualify contractors including license checks, document storage, and CRM updates.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag drive">Google Drive</span>
+            <span class="tag cslb">CSLB Lookup</span>
+            <span class="tag email">Email</span>
+          </div>
         </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+    </div>
+  </details>
+
+  <!-- ═══ IT ═══ -->
+  <details class="category" open>
+    <summary>
+      <div class="category-icon it">&#128421;</div>
+      <div class="category-label">
+        <h2>IT &amp; Systems</h2>
+        <span>Device management, software deployment, account administration</span>
       </div>
-      <span class="card-arrow">&#8594;</span>
-    </a>
+      <span class="chevron">&#9654;</span>
+    </summary>
 
-  </div>
+    <div class="category-guides">
 
-  <!-- Placeholder for future guides -->
-  <div class="section-label">More Coming Soon</div>
+      <!-- Intune Win32 Deployment -->
+      <a class="guide-card" href="intune-win32-deployment.html">
+        <div class="card-icon blue">&#128187;</div>
+        <div class="card-body">
+          <h3>Software Deployment via Intune</h3>
+          <p>How to package and deploy desktop software to company computers through Microsoft Intune using the Win32 app format.</p>
+          <div class="card-tags">
+            <span class="tag intune">Intune</span>
+            <span class="tag windows">Windows</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- LastPass Offboarding -->
+      <a class="guide-card" href="lastpass-offboarding.html">
+        <div class="card-icon red">&#128274;</div>
+        <div class="card-body">
+          <h3>LastPass Offboarding</h3>
+          <p>How to securely remove a departing employee from LastPass, including vault recovery and account deletion.</p>
+          <div class="card-tags">
+            <span class="tag lastpass">LastPass</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+    </div>
+  </details>
+
+  <!-- Future -->
   <div class="coming-soon">
     <strong>New guides will appear here as they're added.</strong>
-    To add a guide, create an HTML file in the repository and add a new card block above.
+    To add a guide, create an HTML file in the repository and add a new card to the matching category above.
   </div>
 
 </main>
