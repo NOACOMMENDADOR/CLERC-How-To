@@ -3,30 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows Laptop Offboarding &amp; Reset Guide</title>
+<title>CLERC How-To Guides</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a2e;
     --paper: #faf9f6;
-    --accent: #d97706;
-    --accent-light: #fef3c7;
-    --accent-mid: #fbbf24;
-    --warm: #e8d5b7;
-    --warm-dark: #c9a96e;
-    --blue: #3a6ea5;
-    --blue-light: #dbeafe;
-    --teal: #0d9488;
-    --teal-light: #ccfbf1;
-    --green: #2d6a4f;
-    --green-light: #d8f3dc;
-    --red: #dc2626;
-    --red-light: #fef2f2;
     --grey: #6b7280;
     --grey-light: #f3f4f6;
     --border: #e5e7eb;
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 28px rgba(0,0,0,0.10);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,690 +25,437 @@
     color: var(--ink);
     line-height: 1.65;
     font-size: 15px;
+    min-height: 100vh;
   }
 
   /* -- Header -- */
   header {
     background: var(--ink);
     color: white;
-    padding: 48px 40px 40px;
+    padding: 44px 40px 40px;
+    text-align: center;
     position: relative;
     overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(45,106,79,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(180,83,9,0.12) 0%, transparent 60%);
+    pointer-events: none;
   }
   header::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-mid), var(--red));
+    background: linear-gradient(90deg, #2d6a4f, #52b788, #f59e0b, #b45309);
   }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+
   header h1 {
     font-family: 'Fraunces', serif;
-    font-size: 2rem;
+    font-size: 2.1rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   header p {
-    opacity: 0.7;
-    font-size: 14px;
-    max-width: 600px;
-  }
-
-  /* -- Layout -- */
-  .layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    max-width: 1200px;
+    opacity: 0.65;
+    font-size: 15px;
+    max-width: 480px;
     margin: 0 auto;
-    min-height: calc(100vh - 140px);
-  }
-
-  /* -- Sidebar -- */
-  nav {
-    border-right: 1px solid var(--border);
-    padding: 24px 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    background: white;
-    font-size: 13px;
-  }
-  nav .nav-group {
-    padding: 0 16px;
-    margin-bottom: 20px;
-  }
-  nav .nav-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--grey);
-    margin-bottom: 8px;
-    padding-left: 4px;
-  }
-  nav a {
-    display: block;
-    padding: 5px 10px;
-    color: var(--ink);
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.15s;
-    line-height: 1.4;
-  }
-  nav a:hover { background: var(--grey-light); }
-  nav a.step-link { border-left: 3px solid var(--accent); padding-left: 7px; }
-
-  /* -- Main -- */
-  main {
-    padding: 36px 48px 80px;
-    max-width: 820px;
-  }
-
-  /* -- Purpose Box -- */
-  .purpose-box {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 28px;
-    margin-bottom: 36px;
-    box-shadow: var(--shadow);
-  }
-  .purpose-box h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
-    margin-bottom: 10px;
-    color: var(--ink);
-  }
-  .purpose-box p { color: var(--grey); font-size: 14px; }
-
-  /* -- Systems Chips -- */
-  .systems {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 14px;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    background: var(--grey-light);
-    color: var(--ink);
-    border: 1px solid var(--border);
-  }
-  .chip .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent-mid);
-  }
-
-  /* -- Record Box -- */
-  .record-box {
-    background: white;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 24px 28px;
-    margin-bottom: 36px;
-    box-shadow: var(--shadow);
-  }
-  .record-box h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem;
-    margin-bottom: 16px;
-    color: var(--ink);
-  }
-  .record-row {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 10px;
-    font-size: 14px;
-  }
-  .record-label {
-    font-weight: 600;
-    min-width: 140px;
-    color: var(--grey);
-    flex-shrink: 0;
-  }
-  .record-line {
-    flex: 1;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 2px;
-    min-height: 18px;
-  }
-  .reason-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 14px;
-    font-size: 14px;
-    flex-wrap: wrap;
-  }
-  .reason-row label {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-  }
-  .reason-row input[type="checkbox"] {
-    accent-color: var(--accent);
-    width: 15px;
-    height: 15px;
-  }
-  .reason-other {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .reason-other span.record-line {
-    min-width: 140px;
-  }
-
-  /* -- Warning Banner -- */
-  .warning-banner {
-    background: var(--red-light);
-    border: 1px solid #fecaca;
-    border-radius: 10px;
-    padding: 18px 22px;
-    margin-bottom: 36px;
-  }
-  .warning-banner h3 {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--red);
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .warning-banner p {
-    font-size: 13px;
-    color: #991b1b;
     line-height: 1.55;
   }
 
-  /* -- Section Headers -- */
-  .section-header {
-    margin: 44px 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--accent);
-  }
-  .section-header:first-of-type {
-    margin-top: 0;
-  }
-  .section-header h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-header .badge {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    background: var(--accent-light);
-    color: var(--accent);
+  /* -- Main -- */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
   }
 
-  /* -- Step Cards -- */
-  .step {
+  /* -- Category Accordion -- */
+  .category {
+    margin-bottom: 16px;
+  }
+
+  .category summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
     background: white;
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
     box-shadow: var(--shadow);
-    position: relative;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    user-select: none;
   }
-  .step-num {
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 4px;
-    letter-spacing: 0.04em;
-    background: var(--accent);
-    color: white;
+  .category summary:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #d1d5db;
   }
+  .category summary::-webkit-details-marker { display: none; }
 
-  .step h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    padding-top: 4px;
-  }
-  .step p { margin-bottom: 8px; color: #374151; font-size: 14px; }
-  .step ul, .step ol {
-    padding-left: 20px;
-    margin: 8px 0;
-    color: #374151;
-    font-size: 14px;
-  }
-  .step li { margin-bottom: 4px; }
-
-  /* -- Callout Boxes -- */
-  .callout {
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 13px;
-    margin: 10px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .callout.tip { background: var(--accent-light); color: #92400e; }
-  .callout.warn { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
-  .callout.info { background: var(--blue-light); color: #1e40af; }
-  .callout.teal { background: var(--teal-light); color: #134e4a; }
-  .callout.green { background: var(--green-light); color: #1b4332; }
-  .callout.red { background: var(--red-light); color: #991b1b; border: 1px solid #fecaca; }
-  .callout .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
-
-  /* -- Inline Link -- */
-  .inline-link {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  /* -- Verify Items -- */
-  .verify-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 12px 0;
-  }
-  .verify-card {
-    background: #f8fafc;
-    border: 1px solid var(--border);
+  .category-icon {
+    width: 36px;
+    height: 36px;
     border-radius: 8px;
-    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
   }
-  .verify-card strong {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 3px;
+  .category-icon.ops   { background: #d8f3dc; color: #2d6a4f; }
+  .category-icon.it    { background: #dbeafe; color: #2563eb; }
+
+  .category-label {
+    flex: 1;
   }
-  .verify-card span {
+  .category-label h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1px;
+  }
+  .category-label span {
     font-size: 12px;
     color: var(--grey);
-    line-height: 1.4;
-    display: block;
   }
 
-  /* -- Escalation Box -- */
-  .escalation-box {
-    background: var(--ink);
-    color: white;
-    border-radius: 10px;
-    padding: 20px 24px;
-    margin-top: 36px;
+  .chevron {
+    font-size: 18px;
+    color: #d1d5db;
+    transition: transform 0.2s;
+    flex-shrink: 0;
   }
-  .escalation-box h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem;
-    margin-bottom: 8px;
-    color: var(--accent-mid);
+  .category[open] .chevron {
+    transform: rotate(90deg);
   }
-  .escalation-box p {
-    font-size: 13px;
-    line-height: 1.6;
-    opacity: 0.85;
-  }
-  .escalation-box ul {
-    padding-left: 20px;
-    margin: 8px 0;
-    font-size: 13px;
-    line-height: 1.6;
-    opacity: 0.85;
-  }
-  .escalation-box li { margin-bottom: 4px; }
 
-  /* -- Checklist -- */
-  .checklist-section {
+  .category-guides {
+    padding: 10px 0 0 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* -- Guide Cards -- */
+  .guide-card {
     background: white;
-    border: 2px solid var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .guide-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    border-color: #d1d5db;
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
     border-radius: 10px;
-    padding: 28px;
-    margin-top: 44px;
-    box-shadow: var(--shadow-md);
-  }
-  .checklist-section h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
-    margin-bottom: 18px;
-    text-align: center;
-  }
-  .check-group {
-    margin-bottom: 14px;
-  }
-  .check-group-title {
-    font-weight: 600;
-    font-size: 13px;
-    margin-bottom: 6px;
     display: flex;
     align-items: center;
-    gap: 6px;
-  }
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 4px 0;
-    font-size: 13.5px;
-    color: #374151;
-  }
-  .check-item input[type="checkbox"] {
-    accent-color: var(--accent);
-    width: 16px;
-    height: 16px;
+    justify-content: center;
+    font-size: 20px;
     flex-shrink: 0;
   }
 
+  .card-body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .card-body p {
+    font-size: 12.5px;
+    color: var(--grey);
+    line-height: 1.45;
+  }
+
+  .card-arrow {
+    font-size: 18px;
+    color: #d1d5db;
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+  .guide-card:hover .card-arrow {
+    color: var(--ink);
+    transform: translateX(3px);
+  }
+
+  /* Card color themes */
+  .card-icon.green  { background: #d8f3dc; color: #2d6a4f; }
+  .card-icon.amber  { background: #fef3c7; color: #b45309; }
+  .card-icon.purple { background: #ede9fe; color: #7c3aed; }
+  .card-icon.blue   { background: #dbeafe; color: #2563eb; }
+  .card-icon.red    { background: #fef2f2; color: #dc2626; }
+  .card-icon.teal   { background: #ccfbf1; color: #0d9488; }
+  .card-icon.orange { background: #fef3c7; color: #d97706; }
+
+  /* -- Chip tags -- */
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 5px;
+  }
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+  .tag.bloomerang { background: #dbeafe; color: #1e40af; }
+  .tag.drive      { background: #d8f3dc; color: #166534; }
+  .tag.asana      { background: #fce7f3; color: #9d174d; }
+  .tag.email      { background: #f3f4f6; color: #4b5563; }
+  .tag.maps       { background: #ccfbf1; color: #115e59; }
+  .tag.adobe      { background: #fde8e8; color: #991b1b; }
+  .tag.cslb       { background: #fef3c7; color: #92400e; }
+  .tag.intune     { background: #dbeafe; color: #1d4ed8; }
+  .tag.windows    { background: #e0e7ff; color: #3730a3; }
+  .tag.lastpass   { background: #fef2f2; color: #b91c1c; }
+  .tag.google     { background: #d8f3dc; color: #166534; }
+  .tag.airtable   { background: #fef3c7; color: #92400e; }
+
+  /* -- Empty state / future -- */
+  .coming-soon {
+    text-align: center;
+    padding: 28px 20px;
+    color: var(--grey);
+    font-size: 13px;
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    margin-top: 32px;
+  }
+  .coming-soon strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  /* -- Footer -- */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #b0b5bd;
+    border-top: 1px solid var(--border);
+  }
+
   /* -- Responsive -- */
-  @media (max-width: 800px) {
-    .layout { grid-template-columns: 1fr; }
-    nav { display: none; }
-    main { padding: 24px 20px 60px; }
+  @media (max-width: 640px) {
     header { padding: 32px 20px; }
-    .verify-grid { grid-template-columns: 1fr; }
-    .record-row { flex-direction: column; gap: 4px; }
-    .record-label { min-width: auto; }
-    .reason-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    header h1 { font-size: 1.6rem; }
+    .logo { width: 140px; }
+    .guide-card {
+      grid-template-columns: 38px 1fr auto;
+      padding: 16px 16px;
+      gap: 12px;
+    }
+    .card-icon { width: 38px; height: 38px; font-size: 18px; border-radius: 8px; }
   }
 </style>
 </head>
 <body>
-<!-- Back to Home -->
-<a href="index.html" style="
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 18px;
-  margin: 12px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: #6b7280;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.15s, color 0.15s;
-  background: transparent;
-" onmouseover="this.style.background='#f3f4f6';this.style.color='#1a1a2e'" onmouseout="this.style.background='transparent';this.style.color='#6b7280'">&#8592; All Guides</a>
+
 <header>
-  <h1>Laptop Offboarding &amp; Reset</h1>
-  <p>Standard operating procedure for returning a CLERC-owned Windows laptop to a clean state before reassignment.</p>
+  <div class="header-content">
+    <img
+      src="https://raw.githubusercontent.com/NOACOMMENDADOR/CLERC-How-To/main/Copy%20of%20CLERC%20Logo%20Large.png"
+      alt="CLERC Logo"
+      class="logo"
+    />
+    <h1>How-To Guides</h1>
+    <p>Step-by-step process guides for CLERC staff. Find the procedure you need and follow along.</p>
+  </div>
 </header>
 
-<div class="layout">
-
-<!-- -- Sidebar -- -->
-<nav>
-  <div class="nav-group">
-    <div class="nav-label">Overview</div>
-    <a href="#purpose">Purpose &amp; Scope</a>
-    <a href="#access">Required Access</a>
-    <a href="#record">Device Record</a>
-  </div>
-  <div class="nav-group">
-    <div class="nav-label">Steps</div>
-    <a class="step-link" href="#s1">1 &middot; Confirm Device Ready</a>
-    <a class="step-link" href="#s2">2 &middot; Verify Business Files</a>
-    <a class="step-link" href="#s3">3 &middot; Confirm Backup</a>
-    <a class="step-link" href="#s4">4 &middot; Admin Sign-In</a>
-    <a class="step-link" href="#s5">5 &middot; Start Windows Reset</a>
-    <a class="step-link" href="#s6">6 &middot; Reset Options</a>
-    <a class="step-link" href="#s7">7 &middot; Allow Reset to Finish</a>
-    <a class="step-link" href="#s8">8 &middot; Stop at First-Run</a>
-    <a class="step-link" href="#s9">9 &middot; Update Records</a>
-  </div>
-  <div class="nav-group">
-    <div class="nav-label">Wrap Up</div>
-    <a href="#checklist">Completion Checklist</a>
-    <a href="#escalation">Exceptions / Escalation</a>
-  </div>
-</nav>
-
-<!-- -- Main Content -- -->
 <main>
 
-  <!-- Purpose -->
-  <div class="purpose-box" id="purpose">
-    <h2>Purpose</h2>
-    <p>Ensure company information is retained when required, employee data is not unintentionally lost, and a Windows laptop is returned to a clean state before reassignment to another employee.</p>
-    <div class="systems">
-      <span class="chip"><span class="dot"></span>Windows 11</span>
-      <span class="chip"><span class="dot"></span>Google Drive</span>
-      <span class="chip"><span class="dot"></span>Airtable</span>
-    </div>
-  </div>
-
-  <!-- Scope -->
-  <div class="step" style="margin-bottom:20px;">
-    <h3>Scope</h3>
-    <p>This SOP applies to CLERC-owned Windows laptops that are being returned by an employee and prepared for internal reuse. Account deactivation, license removal, Intune actions, and other identity-management tasks may be covered by separate procedures.</p>
-  </div>
-
-  <!-- Disposal Warning -->
-  <div class="warning-banner">
-    <h3>&#9888; Disposal or Transfer Outside CLERC</h3>
-    <p>The standard reset in this SOP is intended for internal reassignment. If a device will be sold, donated, recycled, returned to a vendor, or otherwise leave CLERC control, follow an approved secure-erasure/decommissioning process rather than relying on this internal-reuse reset alone.</p>
-  </div>
-
-  <!-- Required Access -->
-  <div class="step" id="access" style="margin-bottom:20px;">
-    <h3>Required Access</h3>
-    <div class="verify-grid">
-      <div class="verify-card">
-        <strong>Admin Account</strong>
-        <span>CLERC Microsoft administrator account (admin@clerc.co) or an approved local Administrator account</span>
+  <!-- ═══ OPERATIONS ═══ -->
+  <details class="category" open>
+    <summary>
+      <div class="category-icon ops">&#127793;</div>
+      <div class="category-label">
+        <h2>Operations</h2>
+        <span>ROE processing, chipping intake, contractor management</span>
       </div>
-      <div class="verify-card">
-        <strong>Cloud Storage Access</strong>
-        <span>Access to the employee's CLERC Google Drive or other authorized storage location if file verification is required</span>
+      <span class="chevron">&#9654;</span>
+    </summary>
+
+    <div class="category-guides">
+
+      <!-- ROE Intake -->
+      <a class="guide-card" href="ROE-intake-process.html">
+        <div class="card-icon green">&#128196;</div>
+        <div class="card-body">
+          <h3>Right of Entry (ROE) Processing</h3>
+          <p>How to receive, verify, process, and record ROE forms from physical mail and digital submissions.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag drive">Google Drive</span>
+            <span class="tag maps">MyMaps</span>
+            <span class="tag adobe">Adobe Acrobat</span>
+            <span class="tag email">Email</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- Chipping Intake -->
+      <a class="guide-card" href="chipping-intake-guide.html">
+        <div class="card-icon amber">&#127794;</div>
+        <div class="card-body">
+          <h3>Chipping Request Intake</h3>
+          <p>How to intake and process chipping requests from online form submissions or mailed-in physical forms.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag asana">Asana</span>
+            <span class="tag email">Email</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- Contractor Pre-Qual -->
+      <a class="guide-card" href="Contractor-PreQual-Process.html">
+        <div class="card-icon purple">&#128203;</div>
+        <div class="card-body">
+          <h3>Contractor Pre-Qualification</h3>
+          <p>How to review, verify, and pre-qualify contractors including license checks, document storage, and CRM updates.</p>
+          <div class="card-tags">
+            <span class="tag bloomerang">Bloomerang</span>
+            <span class="tag drive">Google Drive</span>
+            <span class="tag cslb">CSLB Lookup</span>
+            <span class="tag email">Email</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+    </div>
+  </details>
+
+  <!-- ═══ IT ═══ -->
+  <details class="category" open>
+    <summary>
+      <div class="category-icon it">&#128421;</div>
+      <div class="category-label">
+        <h2>IT &amp; Systems</h2>
+        <span>Device setup, software deployment, account administration</span>
       </div>
+      <span class="chevron">&#9654;</span>
+    </summary>
+
+    <div class="category-guides">
+
+      <!-- Intune Win32 Deployment -->
+      <a class="guide-card" href="intune-win32-deployment.html">
+        <div class="card-icon blue">&#128187;</div>
+        <div class="card-body">
+          <h3>Software Deployment via Intune</h3>
+          <p>How to package and deploy desktop software to company computers through Microsoft Intune using the Win32 app format.</p>
+          <div class="card-tags">
+            <span class="tag intune">Intune</span>
+            <span class="tag windows">Windows</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- LastPass Offboarding -->
+      <a class="guide-card" href="lastpass-offboarding.html">
+        <div class="card-icon red">&#128274;</div>
+        <div class="card-body">
+          <h3>LastPass Offboarding</h3>
+          <p>How to securely remove a departing employee from LastPass, including vault recovery and account deletion.</p>
+          <div class="card-tags">
+            <span class="tag lastpass">LastPass</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- Windows Laptop Setup -->
+      <a class="guide-card" href="laptop-setup-guide.html">
+        <div class="card-icon teal">&#128187;</div>
+        <div class="card-body">
+          <h3>Windows Laptop Setup</h3>
+          <p>How to configure a CLERC-owned Windows laptop for a new or reassigned employee, from first-run through hardware and handoff.</p>
+          <div class="card-tags">
+            <span class="tag windows">Windows</span>
+            <span class="tag intune">Intune</span>
+            <span class="tag google">Google</span>
+            <span class="tag lastpass">LastPass</span>
+            <span class="tag airtable">Airtable</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
+      <!-- Laptop Offboarding & Reset -->
+      <a class="guide-card" href="laptop-offboarding-guide.html">
+        <div class="card-icon orange">&#128260;</div>
+        <div class="card-body">
+          <h3>Laptop Offboarding &amp; Reset</h3>
+          <p>How to return a CLERC-owned Windows laptop to a clean state before reassignment, including file retention checks and Windows reset.</p>
+          <div class="card-tags">
+            <span class="tag windows">Windows</span>
+            <span class="tag drive">Google Drive</span>
+            <span class="tag airtable">Airtable</span>
+          </div>
+        </div>
+        <span class="card-arrow">&#8594;</span>
+      </a>
+
     </div>
-    <div class="callout info" style="margin-top:12px;">
-      <span class="callout-icon">&#128161;</span>
-      <div>Have the power adapter and a reliable internet connection available. The cloud download reset requires both.</div>
-    </div>
-  </div>
+  </details>
 
-  <!-- Device Record -->
-  <div class="record-box" id="record">
-    <h3>Device Record</h3>
-    <div class="record-row">
-      <span class="record-label">Employee</span>
-      <span class="record-line"></span>
-    </div>
-    <div class="record-row">
-      <span class="record-label">Device / Asset Tag</span>
-      <span class="record-line"></span>
-    </div>
-    <div class="record-row">
-      <span class="record-label">Serial Number</span>
-      <span class="record-line"></span>
-    </div>
-    <div class="record-row">
-      <span class="record-label">Technician</span>
-      <span class="record-line"></span>
-    </div>
-    <div class="record-row">
-      <span class="record-label">Date Started</span>
-      <span class="record-line"></span>
-    </div>
-    <div class="reason-row">
-      <span class="record-label">Reason</span>
-      <label><input type="checkbox"> Employee departure</label>
-      <label><input type="checkbox"> Reassignment</label>
-      <div class="reason-other">
-        <label><input type="checkbox"> Other:</label>
-        <span class="record-line"></span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ═══════════ PROCEDURE ═══════════ -->
-  <div class="section-header" id="s1">
-    <h2><span class="badge">Procedure</span> Offboarding Steps</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">STEP 1</div>
-    <h3>Confirm the Device Is Ready for Offboarding</h3>
-    <p>Verify the laptop has been returned with its charger and any assigned accessories. Record the asset tag and serial number before making changes, and confirm the device matches the employee assignment in Airtable.</p>
-  </div>
-
-  <div class="step" id="s2">
-    <div class="step-num">STEP 2</div>
-    <h3>Verify Business Files Are Retained</h3>
-    <p>Employees should store working files in CLERC's approved cloud storage. Before wiping the laptop, check common local storage locations for business files that may not have been synced:</p>
-    <ul>
-      <li>Check <strong>Desktop</strong>, <strong>Downloads</strong>, and <strong>Documents</strong>.</li>
-      <li>Check any known project-specific local folders.</li>
-      <li>Confirm files that must be retained are copied or synced to the appropriate CLERC Google Drive location.</li>
-    </ul>
-    <div class="callout warn">
-      <span class="callout-icon">&#9888;</span>
-      <div>Do not copy personal files unless there is a documented business or records-retention reason to do so.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s3">
-    <div class="step-num">STEP 3</div>
-    <h3>Confirm Backup Is Complete</h3>
-    <p>Do not continue until required company files have been verified in their destination.</p>
-    <div class="callout red">
-      <span class="callout-icon">&#9724;</span>
-      <div><strong>Stop point:</strong> If important files are found locally and ownership or retention is unclear, stop and ask the employee's supervisor or the appropriate records owner before wiping the device.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s4">
-    <div class="step-num">STEP 4</div>
-    <h3>Sign In with an Administrator Account</h3>
-    <p>Sign in using the CLERC Microsoft administrator account (<strong>admin@clerc.co</strong>) or an approved local Administrator account.</p>
-    <div class="callout tip">
-      <span class="callout-icon">&#128273;</span>
-      <div>Do not use the departing employee's credentials unless specifically required and authorized.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s5">
-    <div class="step-num">STEP 5</div>
-    <h3>Start Windows Reset</h3>
-    <p>Open <strong>Settings &gt; System &gt; Recovery</strong>. Under Recovery options, select <strong>Reset PC</strong>.</p>
-  </div>
-
-  <div class="step" id="s6">
-    <div class="step-num">STEP 6</div>
-    <h3>Choose the Reset Options</h3>
-    <ol>
-      <li>Select <strong>Remove everything</strong>.</li>
-      <li>Select <strong>Cloud download</strong>.</li>
-      <li>Review the summary before starting and confirm that personal files, apps, and settings will be removed.</li>
-      <li>Start the reset.</li>
-    </ol>
-    <div class="callout info">
-      <span class="callout-icon">&#128161;</span>
-      <div>"Remove everything" + "Cloud download" gives the cleanest result. The cloud download reinstalls Windows from Microsoft's servers rather than from the local recovery image.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s7">
-    <div class="step-num">STEP 7</div>
-    <h3>Allow the Reset to Finish</h3>
-    <p>Keep the laptop connected to power and internet. The process commonly takes about an hour, but actual time varies by device and connection speed.</p>
-    <div class="callout warn">
-      <span class="callout-icon">&#9888;</span>
-      <div><strong>Do not interrupt power during the reset.</strong> A power loss mid-reset can leave the device in an unrecoverable state.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s8">
-    <div class="step-num">STEP 8</div>
-    <h3>Stop at Windows First-Run Setup</h3>
-    <p>When the laptop restarts to the Windows out-of-box experience (the Region screen), <strong>do not create a new user</strong>. The laptop is now ready for the onboarding procedure.</p>
-    <div class="callout green">
-      <span class="callout-icon">&#9989;</span>
-      <div>The device should be sitting at the Region selection screen. This is the starting point for the <a class="inline-link" href="laptop-setup-guide.html">Windows Laptop Setup Guide</a>.</div>
-    </div>
-  </div>
-
-  <div class="step" id="s9">
-    <div class="step-num">STEP 9</div>
-    <h3>Update Airtable and Device Records</h3>
-    <p>Update the relevant Airtable employee and device/equipment records:</p>
-    <ul>
-      <li>Remove or update the employee-to-device assignment as applicable.</li>
-      <li>Record the return/reset status and completion date.</li>
-      <li>Mark the laptop as <strong>Clean / Ready for Reassignment</strong> once the reset is complete.</li>
-    </ul>
-  </div>
-
-
-  <!-- ═══════════ CHECKLIST ═══════════ -->
-  <div class="checklist-section" id="checklist">
-    <h2>&#9745; Completion Checklist</h2>
-
-    <div class="check-group">
-      <div class="check-group-title">&#128203; Documentation</div>
-      <label class="check-item"><input type="checkbox"> Asset tag and serial number recorded</label>
-    </div>
-
-    <div class="check-group">
-      <div class="check-group-title">&#128193; File Retention</div>
-      <label class="check-item"><input type="checkbox"> Desktop, Downloads, Documents, and known local project folders checked</label>
-      <label class="check-item"><input type="checkbox"> Required business files confirmed in approved cloud storage</label>
-    </div>
-
-    <div class="check-group">
-      <div class="check-group-title">&#128187; Reset</div>
-      <label class="check-item"><input type="checkbox"> Windows reset completed using Remove everything + Cloud download</label>
-      <label class="check-item"><input type="checkbox"> Device reached the Windows first-run / Region screen</label>
-    </div>
-
-    <div class="check-group">
-      <div class="check-group-title">&#128230; Equipment</div>
-      <label class="check-item"><input type="checkbox"> Charger and assigned accessories are present</label>
-    </div>
-
-    <div class="check-group">
-      <div class="check-group-title">&#9881; Records</div>
-      <label class="check-item"><input type="checkbox"> Airtable employee and device/equipment records updated to reflect return/offboarding status, cleared assignment, reset completion, and readiness for reassignment</label>
-    </div>
-  </div>
-
-
-  <!-- ═══════════ ESCALATION ═══════════ -->
-  <div class="escalation-box" id="escalation">
-    <h3>&#9888; Exceptions / Escalation</h3>
-    <p>Stop the process and escalate before wiping if:</p>
-    <ul>
-      <li>The device contains unsynced records subject to a grant, legal, personnel, accounting, records-retention, or investigation requirement</li>
-      <li>The drive is failing</li>
-      <li>The reset cannot complete</li>
-      <li>The device will leave CLERC ownership</li>
-    </ul>
+  <!-- Future -->
+  <div class="coming-soon">
+    <strong>New guides will appear here as they're added.</strong>
+    To add a guide, create an HTML file in the repository and add a new card to the matching category above.
   </div>
 
 </main>
-</div>
+
+<footer>
+  CLERC &middot; Internal Staff Guides
+</footer>
 
 </body>
 </html>
