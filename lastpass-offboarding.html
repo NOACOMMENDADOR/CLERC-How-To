@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LastPass Offboarding Guide</title>
+<title>Windows Laptop Offboarding &amp; Reset Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a2e;
     --paper: #faf9f6;
-    --accent: #dc2626;
-    --accent-light: #fef2f2;
-    --accent-mid: #f87171;
+    --accent: #d97706;
+    --accent-light: #fef3c7;
+    --accent-mid: #fbbf24;
     --warm: #e8d5b7;
     --warm-dark: #c9a96e;
     --blue: #3a6ea5;
@@ -20,6 +20,8 @@
     --teal-light: #ccfbf1;
     --green: #2d6a4f;
     --green-light: #d8f3dc;
+    --red: #dc2626;
+    --red-light: #fef2f2;
     --grey: #6b7280;
     --grey-light: #f3f4f6;
     --border: #e5e7eb;
@@ -50,7 +52,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-mid), var(--teal));
+    background: linear-gradient(90deg, var(--accent), var(--accent-mid), var(--red));
   }
   header h1 {
     font-family: 'Fraunces', serif;
@@ -158,6 +160,91 @@
     background: var(--accent-mid);
   }
 
+  /* -- Record Box -- */
+  .record-box {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow);
+  }
+  .record-box h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .record-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .record-label {
+    font-weight: 600;
+    min-width: 140px;
+    color: var(--grey);
+    flex-shrink: 0;
+  }
+  .record-line {
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    min-height: 18px;
+  }
+  .reason-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+  .reason-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .reason-row input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 15px;
+    height: 15px;
+  }
+  .reason-other {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .reason-other span.record-line {
+    min-width: 140px;
+  }
+
+  /* -- Warning Banner -- */
+  .warning-banner {
+    background: var(--red-light);
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+  }
+  .warning-banner h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .warning-banner p {
+    font-size: 13px;
+    color: #991b1b;
+    line-height: 1.55;
+  }
+
   /* -- Section Headers -- */
   .section-header {
     margin: 44px 0 20px;
@@ -235,11 +322,12 @@
     align-items: flex-start;
     gap: 8px;
   }
-  .callout.tip { background: var(--accent-light); color: #991b1b; }
+  .callout.tip { background: var(--accent-light); color: #92400e; }
   .callout.warn { background: #fff7ed; color: #9a3412; border: 1px solid #fed7aa; }
   .callout.info { background: var(--blue-light); color: #1e40af; }
   .callout.teal { background: var(--teal-light); color: #134e4a; }
   .callout.green { background: var(--green-light); color: #1b4332; }
+  .callout.red { background: var(--red-light); color: #991b1b; border: 1px solid #fecaca; }
   .callout .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
 
   /* -- Inline Link -- */
@@ -274,25 +362,33 @@
     display: block;
   }
 
-  /* -- Order Explainer -- */
-  .order-box {
+  /* -- Escalation Box -- */
+  .escalation-box {
     background: var(--ink);
     color: white;
     border-radius: 10px;
     padding: 20px 24px;
-    margin-bottom: 36px;
+    margin-top: 36px;
   }
-  .order-box h3 {
+  .escalation-box h3 {
     font-family: 'Fraunces', serif;
     font-size: 1rem;
     margin-bottom: 8px;
     color: var(--accent-mid);
   }
-  .order-box p {
+  .escalation-box p {
     font-size: 13px;
     line-height: 1.6;
     opacity: 0.85;
   }
+  .escalation-box ul {
+    padding-left: 20px;
+    margin: 8px 0;
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+  .escalation-box li { margin-bottom: 4px; }
 
   /* -- Checklist -- */
   .checklist-section {
@@ -342,6 +438,9 @@
     main { padding: 24px 20px 60px; }
     header { padding: 32px 20px; }
     .verify-grid { grid-template-columns: 1fr; }
+    .record-row { flex-direction: column; gap: 4px; }
+    .record-label { min-width: auto; }
+    .reason-row { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 </style>
 </head>
@@ -363,8 +462,8 @@
   background: transparent;
 " onmouseover="this.style.background='#f3f4f6';this.style.color='#1a1a2e'" onmouseout="this.style.background='transparent';this.style.color='#6b7280'">&#8592; All Guides</a>
 <header>
-  <h1>LastPass Offboarding Guide</h1>
-  <p>Standard operating procedure for removing a departing employee from LastPass, including vault recovery and account deletion.</p>
+  <h1>Laptop Offboarding &amp; Reset</h1>
+  <p>Standard operating procedure for returning a CLERC-owned Windows laptop to a clean state before reassignment.</p>
 </header>
 
 <div class="layout">
@@ -373,22 +472,26 @@
 <nav>
   <div class="nav-group">
     <div class="nav-label">Overview</div>
-    <a href="#purpose">Purpose &amp; Prerequisites</a>
-    <a href="#order">Why Order Matters</a>
+    <a href="#purpose">Purpose &amp; Scope</a>
+    <a href="#access">Required Access</a>
+    <a href="#record">Device Record</a>
   </div>
   <div class="nav-group">
     <div class="nav-label">Steps</div>
-    <a class="step-link" href="#s1">1 &middot; Disable Account</a>
-    <a class="step-link" href="#s2">2 &middot; Destroy Sessions</a>
-    <a class="step-link" href="#s3">3 &middot; Reset Master Password</a>
-    <a class="step-link" href="#s4">4 &middot; Reactivate Account</a>
-    <a class="step-link" href="#s5">5 &middot; Preserve Passwords</a>
-    <a class="step-link" href="#s6">6 &middot; Delete Account</a>
-    <a class="step-link" href="#s7">7 &middot; Clean Up</a>
+    <a class="step-link" href="#s1">1 &middot; Confirm Device Ready</a>
+    <a class="step-link" href="#s2">2 &middot; Verify Business Files</a>
+    <a class="step-link" href="#s3">3 &middot; Confirm Backup</a>
+    <a class="step-link" href="#s4">4 &middot; Admin Sign-In</a>
+    <a class="step-link" href="#s5">5 &middot; Start Windows Reset</a>
+    <a class="step-link" href="#s6">6 &middot; Reset Options</a>
+    <a class="step-link" href="#s7">7 &middot; Allow Reset to Finish</a>
+    <a class="step-link" href="#s8">8 &middot; Stop at First-Run</a>
+    <a class="step-link" href="#s9">9 &middot; Update Records</a>
   </div>
   <div class="nav-group">
     <div class="nav-label">Wrap Up</div>
-    <a href="#checklist">Quick Checklist</a>
+    <a href="#checklist">Completion Checklist</a>
+    <a href="#escalation">Exceptions / Escalation</a>
   </div>
 </nav>
 
@@ -398,199 +501,222 @@
   <!-- Purpose -->
   <div class="purpose-box" id="purpose">
     <h2>Purpose</h2>
-    <p>Securely remove a departing employee from LastPass when they quit or are terminated. This process locks them out, recovers any passwords the team still needs, and deletes their account.</p>
+    <p>Ensure company information is retained when required, employee data is not unintentionally lost, and a Windows laptop is returned to a clean state before reassignment to another employee.</p>
     <div class="systems">
-      <span class="chip"><span class="dot"></span>LastPass Admin Console</span>
-      <span class="chip"><span class="dot"></span>LastPass Vault</span>
+      <span class="chip"><span class="dot"></span>Windows 11</span>
+      <span class="chip"><span class="dot"></span>Google Drive</span>
+      <span class="chip"><span class="dot"></span>Airtable</span>
     </div>
   </div>
 
-  <!-- Prerequisites -->
-  <div class="step" style="margin-bottom:36px;">
-    <h3>Before You Start</h3>
-    <p>You need:</p>
+  <!-- Scope -->
+  <div class="step" style="margin-bottom:20px;">
+    <h3>Scope</h3>
+    <p>This SOP applies to CLERC-owned Windows laptops that are being returned by an employee and prepared for internal reuse. Account deactivation, license removal, Intune actions, and other identity-management tasks may be covered by separate procedures.</p>
+  </div>
+
+  <!-- Disposal Warning -->
+  <div class="warning-banner">
+    <h3>&#9888; Disposal or Transfer Outside CLERC</h3>
+    <p>The standard reset in this SOP is intended for internal reassignment. If a device will be sold, donated, recycled, returned to a vendor, or otherwise leave CLERC control, follow an approved secure-erasure/decommissioning process rather than relying on this internal-reuse reset alone.</p>
+  </div>
+
+  <!-- Required Access -->
+  <div class="step" id="access" style="margin-bottom:20px;">
+    <h3>Required Access</h3>
     <div class="verify-grid">
       <div class="verify-card">
-        <strong>Super Admin Login</strong>
-        <span>The shared admin email address and its master password</span>
+        <strong>Admin Account</strong>
+        <span>CLERC Microsoft administrator account (admin@clerc.co) or an approved local Administrator account</span>
       </div>
       <div class="verify-card">
-        <strong>Shared Folder Access</strong>
-        <span>The departing employee's shared folder, where you will save their new master password and any passwords worth keeping</span>
+        <strong>Cloud Storage Access</strong>
+        <span>Access to the employee's CLERC Google Drive or other authorized storage location if file verification is required</span>
+      </div>
+    </div>
+    <div class="callout info" style="margin-top:12px;">
+      <span class="callout-icon">&#128161;</span>
+      <div>Have the power adapter and a reliable internet connection available. The cloud download reset requires both.</div>
+    </div>
+  </div>
+
+  <!-- Device Record -->
+  <div class="record-box" id="record">
+    <h3>Device Record</h3>
+    <div class="record-row">
+      <span class="record-label">Employee</span>
+      <span class="record-line"></span>
+    </div>
+    <div class="record-row">
+      <span class="record-label">Device / Asset Tag</span>
+      <span class="record-line"></span>
+    </div>
+    <div class="record-row">
+      <span class="record-label">Serial Number</span>
+      <span class="record-line"></span>
+    </div>
+    <div class="record-row">
+      <span class="record-label">Technician</span>
+      <span class="record-line"></span>
+    </div>
+    <div class="record-row">
+      <span class="record-label">Date Started</span>
+      <span class="record-line"></span>
+    </div>
+    <div class="reason-row">
+      <span class="record-label">Reason</span>
+      <label><input type="checkbox"> Employee departure</label>
+      <label><input type="checkbox"> Reassignment</label>
+      <div class="reason-other">
+        <label><input type="checkbox"> Other:</label>
+        <span class="record-line"></span>
       </div>
     </div>
   </div>
 
-  <!-- Why Order Matters -->
-  <div class="order-box" id="order">
-    <h3>&#9888; Why the order matters</h3>
-    <p>LastPass is zero-knowledge, which means no one can read a vault without its master password, not even an admin. If you delete the account before rescuing anything saved only in the employee's personal vault, that data is gone for good. The plan is to lock the account down first, set a master password you control, pull anything the team still needs into a shared folder, and only then delete.</p>
-  </div>
 
-
-  <!-- =============== STEP 1 =============== -->
+  <!-- ═══════════ PROCEDURE ═══════════ -->
   <div class="section-header" id="s1">
-    <h2><span class="badge">Step 1</span> Disable the Account</h2>
+    <h2><span class="badge">Procedure</span> Offboarding Steps</h2>
   </div>
 
   <div class="step">
-    <div class="step-num">1</div>
-    <h3>Block the Employee's Login</h3>
-    <ol>
-      <li>Go to <a class="inline-link" href="https://admin.lastpass.com" target="_blank">admin.lastpass.com</a> and log in with the shared admin email and master password.</li>
-      <li>Select <strong>Users</strong> in the navigation.</li>
-      <li>Find the employee by name or email and open their entry.</li>
-      <li>Choose <strong>Disable</strong> (also shown as Deactivate). This blocks their login right away but keeps the account and vault intact.</li>
-    </ol>
-    <div class="callout info">
-      <span class="callout-icon">&#128161;</span>
-      <div>Disabling does not always kick out a browser extension that is still open on their device. The next step handles that.</div>
+    <div class="step-num">STEP 1</div>
+    <h3>Confirm the Device Is Ready for Offboarding</h3>
+    <p>Verify the laptop has been returned with its charger and any assigned accessories. Record the asset tag and serial number before making changes, and confirm the device matches the employee assignment in Airtable.</p>
+  </div>
+
+  <div class="step" id="s2">
+    <div class="step-num">STEP 2</div>
+    <h3>Verify Business Files Are Retained</h3>
+    <p>Employees should store working files in CLERC's approved cloud storage. Before wiping the laptop, check common local storage locations for business files that may not have been synced:</p>
+    <ul>
+      <li>Check <strong>Desktop</strong>, <strong>Downloads</strong>, and <strong>Documents</strong>.</li>
+      <li>Check any known project-specific local folders.</li>
+      <li>Confirm files that must be retained are copied or synced to the appropriate CLERC Google Drive location.</li>
+    </ul>
+    <div class="callout warn">
+      <span class="callout-icon">&#9888;</span>
+      <div>Do not copy personal files unless there is a documented business or records-retention reason to do so.</div>
     </div>
   </div>
 
-
-  <!-- =============== STEP 2 =============== -->
-  <div class="section-header" id="s2">
-    <h2><span class="badge">Step 2</span> Destroy All Sessions</h2>
+  <div class="step" id="s3">
+    <div class="step-num">STEP 3</div>
+    <h3>Confirm Backup Is Complete</h3>
+    <p>Do not continue until required company files have been verified in their destination.</p>
+    <div class="callout red">
+      <span class="callout-icon">&#9724;</span>
+      <div><strong>Stop point:</strong> If important files are found locally and ownership or retention is unclear, stop and ask the employee's supervisor or the appropriate records owner before wiping the device.</div>
+    </div>
   </div>
 
-  <div class="step">
-    <div class="step-num">2</div>
-    <h3>Force Logout on Every Device</h3>
+  <div class="step" id="s4">
+    <div class="step-num">STEP 4</div>
+    <h3>Sign In with an Administrator Account</h3>
+    <p>Sign in using the CLERC Microsoft administrator account (<strong>admin@clerc.co</strong>) or an approved local Administrator account.</p>
+    <div class="callout tip">
+      <span class="callout-icon">&#128273;</span>
+      <div>Do not use the departing employee's credentials unless specifically required and authorized.</div>
+    </div>
+  </div>
+
+  <div class="step" id="s5">
+    <div class="step-num">STEP 5</div>
+    <h3>Start Windows Reset</h3>
+    <p>Open <strong>Settings &gt; System &gt; Recovery</strong>. Under Recovery options, select <strong>Reset PC</strong>.</p>
+  </div>
+
+  <div class="step" id="s6">
+    <div class="step-num">STEP 6</div>
+    <h3>Choose the Reset Options</h3>
     <ol>
-      <li>In the same user's menu, choose <strong>Destroy all sessions</strong>.</li>
-      <li>This logs the employee out of every device immediately.</li>
+      <li>Select <strong>Remove everything</strong>.</li>
+      <li>Select <strong>Cloud download</strong>.</li>
+      <li>Review the summary before starting and confirm that personal files, apps, and settings will be removed.</li>
+      <li>Start the reset.</li>
     </ol>
+    <div class="callout info">
+      <span class="callout-icon">&#128161;</span>
+      <div>"Remove everything" + "Cloud download" gives the cleanest result. The cloud download reinstalls Windows from Microsoft's servers rather than from the local recovery image.</div>
+    </div>
+  </div>
+
+  <div class="step" id="s7">
+    <div class="step-num">STEP 7</div>
+    <h3>Allow the Reset to Finish</h3>
+    <p>Keep the laptop connected to power and internet. The process commonly takes about an hour, but actual time varies by device and connection speed.</p>
+    <div class="callout warn">
+      <span class="callout-icon">&#9888;</span>
+      <div><strong>Do not interrupt power during the reset.</strong> A power loss mid-reset can leave the device in an unrecoverable state.</div>
+    </div>
+  </div>
+
+  <div class="step" id="s8">
+    <div class="step-num">STEP 8</div>
+    <h3>Stop at Windows First-Run Setup</h3>
+    <p>When the laptop restarts to the Windows out-of-box experience (the Region screen), <strong>do not create a new user</strong>. The laptop is now ready for the onboarding procedure.</p>
     <div class="callout green">
       <span class="callout-icon">&#9989;</span>
-      <div>Between Step 1 and Step 2, the employee is now fully locked out.</div>
+      <div>The device should be sitting at the Region selection screen. This is the starting point for the <a class="inline-link" href="laptop-setup-guide.html">Windows Laptop Setup Guide</a>.</div>
     </div>
   </div>
 
-
-  <!-- =============== STEP 3 =============== -->
-  <div class="section-header" id="s3">
-    <h2><span class="badge">Step 3</span> Reset the Master Password</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">3</div>
-    <h3>Set a Password You Control</h3>
-    <ol>
-      <li>In the user's menu, choose the option to <strong>change the master password</strong> (the Super Admin option that sets the password immediately).</li>
-      <li>Enter a new master password.</li>
-      <li>Save that new master password into the employee's shared folder so any admin can find it later.</li>
-    </ol>
-    <div class="callout warn">
-      <span class="callout-icon">&#9888;</span>
-      <div><strong>Watch for the two similar options.</strong> The plain "Reset master password" only prompts the user to change it the next time they log in, which will not happen since they are gone. You want the <strong>change master password</strong> option, which sets it right away. This requires Super Admin permission, which your shared account already has.</div>
-    </div>
+  <div class="step" id="s9">
+    <div class="step-num">STEP 9</div>
+    <h3>Update Airtable and Device Records</h3>
+    <p>Update the relevant Airtable employee and device/equipment records:</p>
+    <ul>
+      <li>Remove or update the employee-to-device assignment as applicable.</li>
+      <li>Record the return/reset status and completion date.</li>
+      <li>Mark the laptop as <strong>Clean / Ready for Reassignment</strong> once the reset is complete.</li>
+    </ul>
   </div>
 
 
-  <!-- =============== STEP 4 =============== -->
-  <div class="section-header" id="s4">
-    <h2><span class="badge">Step 4</span> Reactivate the Account</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">4</div>
-    <h3>Re-enable So You Can Log In</h3>
-    <ol>
-      <li>In the user's menu, change the account status back to <strong>Active</strong>.</li>
-    </ol>
-    <div class="callout info">
-      <span class="callout-icon">&#128161;</span>
-      <div>You need the account active again because you cannot log into a disabled account, and the next step requires logging in as the employee.</div>
-    </div>
-  </div>
-
-
-  <!-- =============== STEP 5 =============== -->
-  <div class="section-header" id="s5">
-    <h2><span class="badge">Step 5</span> Preserve Passwords the Team Needs</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">5</div>
-    <h3>Log In and Rescue Vault Contents</h3>
-    <ol>
-      <li>Log out of your admin account, or open a separate browser or incognito window so you do not disturb your admin session.</li>
-      <li>Go to <a class="inline-link" href="https://lastpass.com" target="_blank">lastpass.com</a> and log in with the employee's email and the new master password you set in Step 3.</li>
-      <li>Review their vault. Move or copy any logins the team still needs into the employee's shared folder (or whichever shared folder makes sense).</li>
-    </ol>
-    <div class="callout warn">
-      <span class="callout-icon">&#9888;</span>
-      <div><strong>Last chance.</strong> Anything left only in their personal vault will be lost once the account is deleted. Make sure everything worth keeping lands in a shared folder before you move on.</div>
-    </div>
-  </div>
-
-
-  <!-- =============== STEP 6 =============== -->
-  <div class="section-header" id="s6">
-    <h2><span class="badge">Step 6</span> Delete the Account</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">6</div>
-    <h3>Permanently Remove the Account</h3>
-    <ol>
-      <li>Log back into <a class="inline-link" href="https://admin.lastpass.com" target="_blank">admin.lastpass.com</a> as super admin.</li>
-      <li>Select <strong>Users</strong>, open the employee's entry, and choose <strong>Delete User</strong> to remove the account entirely.</li>
-      <li>Confirm when prompted.</li>
-    </ol>
-    <div class="callout warn">
-      <span class="callout-icon">&#9888;</span>
-      <div><strong>Delete User vs. Remove User from Company.</strong> Delete User removes the account completely. Remove User from Company takes them out of your organization but can leave a personal account behind. For a full offboarding, use <strong>Delete User</strong>.</div>
-    </div>
-  </div>
-
-
-  <!-- =============== STEP 7 =============== -->
-  <div class="section-header" id="s7">
-    <h2><span class="badge">Step 7</span> Clean Up</h2>
-  </div>
-
-  <div class="step">
-    <div class="step-num">7</div>
-    <h3>Reassign Ownership and Tidy Records</h3>
-    <ol>
-      <li>If the employee owned any shared folders, reassign ownership to a current admin before or right after deletion so nothing gets orphaned.</li>
-      <li>Update the shared folder record if needed, since the old master password no longer applies once the account is gone.</li>
-    </ol>
-  </div>
-
-
-  <!-- =============== CHECKLIST =============== -->
+  <!-- ═══════════ CHECKLIST ═══════════ -->
   <div class="checklist-section" id="checklist">
-    <h2>&#9989; Quick Checklist</h2>
-    <p style="text-align:center; font-size:13px; color:var(--grey); margin-bottom:18px;">Confirm each step in order before moving to the next.</p>
+    <h2>&#9745; Completion Checklist</h2>
 
     <div class="check-group">
-      <div class="check-group-title">&#128274; Lock Out</div>
-      <label class="check-item"><input type="checkbox"> Account disabled</label>
-      <label class="check-item"><input type="checkbox"> All sessions destroyed</label>
+      <div class="check-group-title">&#128203; Documentation</div>
+      <label class="check-item"><input type="checkbox"> Asset tag and serial number recorded</label>
     </div>
 
     <div class="check-group">
-      <div class="check-group-title">&#128273; Password Control</div>
-      <label class="check-item"><input type="checkbox"> Master password changed (Super Admin option)</label>
-      <label class="check-item"><input type="checkbox"> New master password saved to shared folder</label>
-      <label class="check-item"><input type="checkbox"> Account reactivated</label>
+      <div class="check-group-title">&#128193; File Retention</div>
+      <label class="check-item"><input type="checkbox"> Desktop, Downloads, Documents, and known local project folders checked</label>
+      <label class="check-item"><input type="checkbox"> Required business files confirmed in approved cloud storage</label>
     </div>
 
     <div class="check-group">
-      <div class="check-group-title">&#128194; Vault Recovery</div>
-      <label class="check-item"><input type="checkbox"> Logged in as employee with new master password</label>
-      <label class="check-item"><input type="checkbox"> Needed passwords moved to shared folder</label>
+      <div class="check-group-title">&#128187; Reset</div>
+      <label class="check-item"><input type="checkbox"> Windows reset completed using Remove everything + Cloud download</label>
+      <label class="check-item"><input type="checkbox"> Device reached the Windows first-run / Region screen</label>
     </div>
 
     <div class="check-group">
-      <div class="check-group-title">&#128465; Removal</div>
-      <label class="check-item"><input type="checkbox"> Account deleted (Delete User, not Remove User)</label>
-      <label class="check-item"><input type="checkbox"> Shared folder ownership reassigned</label>
-      <label class="check-item"><input type="checkbox"> Records updated</label>
+      <div class="check-group-title">&#128230; Equipment</div>
+      <label class="check-item"><input type="checkbox"> Charger and assigned accessories are present</label>
     </div>
+
+    <div class="check-group">
+      <div class="check-group-title">&#9881; Records</div>
+      <label class="check-item"><input type="checkbox"> Airtable employee and device/equipment records updated to reflect return/offboarding status, cleared assignment, reset completion, and readiness for reassignment</label>
+    </div>
+  </div>
+
+
+  <!-- ═══════════ ESCALATION ═══════════ -->
+  <div class="escalation-box" id="escalation">
+    <h3>&#9888; Exceptions / Escalation</h3>
+    <p>Stop the process and escalate before wiping if:</p>
+    <ul>
+      <li>The device contains unsynced records subject to a grant, legal, personnel, accounting, records-retention, or investigation requirement</li>
+      <li>The drive is failing</li>
+      <li>The reset cannot complete</li>
+      <li>The device will leave CLERC ownership</li>
+    </ul>
   </div>
 
 </main>
