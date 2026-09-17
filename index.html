@@ -87,12 +87,21 @@
   main {
     max-width: 820px;
     margin: 0 auto;
-    padding: 40px 24px 80px;
+    padding: 32px 24px 80px;
+  }
+
+  /* -- Intro -- */
+  .intro {
+    text-align: center;
+    margin-bottom: 28px;
+    color: var(--grey);
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   /* -- Category Accordion -- */
   .category {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .category summary {
@@ -100,8 +109,8 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 18px;
+    gap: 14px;
+    padding: 16px 20px;
     background: white;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -116,13 +125,13 @@
   .category summary::-webkit-details-marker { display: none; }
 
   .category-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 19px;
     flex-shrink: 0;
   }
   .category-icon.ops   { background: #d8f3dc; color: #2d6a4f; }
@@ -137,9 +146,20 @@
     font-weight: 700;
     margin-bottom: 1px;
   }
-  .category-label span {
-    font-size: 12px;
+  .category-label p {
+    font-size: 12.5px;
     color: var(--grey);
+    line-height: 1.4;
+  }
+
+  .count-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 10px;
+    background: var(--grey-light);
+    color: var(--grey);
+    flex-shrink: 0;
   }
 
   .chevron {
@@ -250,21 +270,66 @@
   .tag.google     { background: #d8f3dc; color: #166534; }
   .tag.airtable   { background: #fef3c7; color: #92400e; }
 
-  /* -- Empty state / future -- */
-  .coming-soon {
-    text-align: center;
-    padding: 28px 20px;
-    color: var(--grey);
-    font-size: 13px;
-    border: 2px dashed var(--border);
+  /* -- Quick Links -- */
+  .quick-links {
+    margin-top: 40px;
+    background: white;
+    border: 1px solid var(--border);
     border-radius: 12px;
-    margin-top: 32px;
+    padding: 28px 28px 20px;
+    box-shadow: var(--shadow);
   }
-  .coming-soon strong {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 4px;
+  .quick-links h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .quick-links h2 .ql-icon {
+    font-size: 16px;
+  }
+  .links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ql-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
     color: var(--ink);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+  }
+  .ql-item:hover {
+    background: var(--grey-light);
+    border-color: var(--border);
+  }
+  .ql-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .ql-item span.ql-desc {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--grey);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .links-grid { grid-template-columns: 1fr; }
+    .quick-links { padding: 20px 18px 14px; }
   }
 
   /* -- Footer -- */
@@ -306,14 +371,17 @@
 
 <main>
 
+  <p class="intro">Select a category below to browse available guides.</p>
+
   <!-- ═══ OPERATIONS ═══ -->
-  <details class="category" open>
+  <details class="category">
     <summary>
       <div class="category-icon ops">&#127793;</div>
       <div class="category-label">
         <h2>Operations</h2>
-        <span>ROE processing, chipping intake, contractor management</span>
+        <p>ROE processing, chipping intake, contractor management</p>
       </div>
+      <span class="count-badge">3 guides</span>
       <span class="chevron">&#9654;</span>
     </summary>
 
@@ -371,13 +439,14 @@
   </details>
 
   <!-- ═══ IT ═══ -->
-  <details class="category" open>
+  <details class="category">
     <summary>
       <div class="category-icon it">&#128421;</div>
       <div class="category-label">
         <h2>IT &amp; Systems</h2>
-        <span>Device setup, software deployment, account administration</span>
+        <p>Device setup, software deployment, account administration</p>
       </div>
+      <span class="count-badge">4 guides</span>
       <span class="chevron">&#9654;</span>
     </summary>
 
@@ -445,10 +514,85 @@
     </div>
   </details>
 
-  <!-- Future -->
-  <div class="coming-soon">
-    <strong>New guides will appear here as they're added.</strong>
-    To add a guide, create an HTML file in the repository and add a new card to the matching category above.
+  <!-- ═══ Quick Links ═══ -->
+  <div class="quick-links">
+    <h2><span class="ql-icon">&#128279;</span> Quick Links</h2>
+    <p style="color:#64748b;margin:0 0 18px;font-size:.97rem;">Jump to the tools and platforms referenced across these guides.</p>
+    <div class="links-grid">
+
+      <a class="ql-item" href="https://app.bloomerang.co" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#e8455e;"></span>
+        <span>Bloomerang</span>
+        <span class="ql-desc">Donor CRM</span>
+      </a>
+
+      <a class="ql-item" href="https://drive.google.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#16a34a;"></span>
+        <span>Google Drive</span>
+        <span class="ql-desc">File storage &amp; sharing</span>
+      </a>
+
+      <a class="ql-item" href="https://www.google.com/maps/d/" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#0ea5e9;"></span>
+        <span>Google MyMaps</span>
+        <span class="ql-desc">Custom map layers</span>
+      </a>
+
+      <a class="ql-item" href="https://acrobat.adobe.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#e03c31;"></span>
+        <span>Adobe Acrobat</span>
+        <span class="ql-desc">PDF editing &amp; signing</span>
+      </a>
+
+      <a class="ql-item" href="https://app.asana.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#f06a6a;"></span>
+        <span>Asana</span>
+        <span class="ql-desc">Project management</span>
+      </a>
+
+      <a class="ql-item" href="https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/CheckLicense.aspx" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#ca8a04;"></span>
+        <span>CSLB License Lookup</span>
+        <span class="ql-desc">Contractor license verification</span>
+      </a>
+
+      <a class="ql-item" href="https://intune.microsoft.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#2563eb;"></span>
+        <span>Microsoft Intune</span>
+        <span class="ql-desc">Device management</span>
+      </a>
+
+      <a class="ql-item" href="https://admin.lastpass.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#dc2626;"></span>
+        <span>LastPass Admin</span>
+        <span class="ql-desc">Password management</span>
+      </a>
+
+      <a class="ql-item" href="https://airtable.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#18bfff;"></span>
+        <span>Airtable</span>
+        <span class="ql-desc">Asset &amp; record tracking</span>
+      </a>
+
+      <a class="ql-item" href="https://tsheets.intuit.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#2ca01c;"></span>
+        <span>QuickBooks Time</span>
+        <span class="ql-desc">Time tracking</span>
+      </a>
+
+      <a class="ql-item" href="https://mail.google.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#ea4335;"></span>
+        <span>Gmail</span>
+        <span class="ql-desc">Email</span>
+      </a>
+
+      <a class="ql-item" href="https://calendar.google.com" target="_blank" rel="noopener">
+        <span class="ql-dot" style="background:#4285f4;"></span>
+        <span>Google Calendar</span>
+        <span class="ql-desc">Scheduling</span>
+      </a>
+
+    </div>
   </div>
 
 </main>
