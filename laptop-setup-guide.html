@@ -469,14 +469,16 @@
   </div>
   <div class="nav-group">
     <div class="nav-label">Cleanup &amp; Security</div>
-    <a class="step-link" href="#s16">16 &middot; Remove Apps</a>
-    <a class="step-link" href="#s17">17 &middot; Windows Security</a>
-    <a class="step-link" href="#s18">18 &middot; Company Portal</a>
+    <a class="step-link" href="#s16">16 &middot; Bloatware Script</a>
+    <a class="step-link" href="#s17">17 &middot; Manual Cleanup</a>
+    <a class="step-link" href="#s18">18 &middot; Restart</a>
+    <a class="step-link" href="#s19">19 &middot; Windows Security</a>
+    <a class="step-link" href="#s20">20 &middot; Company Portal</a>
   </div>
   <div class="nav-group">
     <div class="nav-label">Hardware &amp; Handoff</div>
-    <a class="step-link" href="#s19">19 &middot; Peripherals</a>
-    <a class="step-link" href="#s20">20 &middot; Monitors</a>
+    <a class="step-link" href="#s21">21 &middot; Peripherals</a>
+    <a class="step-link" href="#s22">22 &middot; Monitors</a>
   </div>
   <div class="nav-group">
     <div class="nav-label">Wrap Up</div>
@@ -774,17 +776,42 @@
 
   <div class="step">
     <div class="step-num">STEP 16</div>
-    <h3>Uninstall Bloatware</h3>
-    <p>Go to <strong>Settings &gt; Apps &gt; Installed apps</strong>. Uninstall the following when present and when not required for the employee's role:</p>
+    <h3>Run the Bloatware Removal Script</h3>
+    <p>CLERC has a bloatware removal tool available through Company Portal that automatically removes common pre-installed Windows apps (Clipchamp, News, Solitaire, Xbox apps, and similar). The script does not touch CLERC-deployed applications like Chrome, Google Drive, or Adobe Acrobat.</p>
+    <ol>
+      <li>Open <strong>Company Portal</strong> from the taskbar or Start menu.</li>
+      <li>Find <strong>Bloatware Removal</strong> (or the current name of the debloat tool) in the list of available apps.</li>
+      <li>Click <strong>Install</strong>. The script runs automatically after installation.</li>
+      <li>Wait for Company Portal to show the install as complete. The script creates a log folder at <strong>C:\ProgramData\Debloat</strong> once it finishes.</li>
+    </ol>
+    <div class="callout tip">
+      <span class="callout-icon">&#128273;</span>
+      <div>The script automatically detects Intune-deployed apps and skips them, so there is no risk of removing CLERC's managed applications. If you need to verify what was removed, check the log files in C:\ProgramData\Debloat.</div>
+    </div>
+    <div class="callout info">
+      <span class="callout-icon">&#128161;</span>
+      <div>Run this step <strong>after</strong> installing all CLERC apps (Steps 13-15). The script uses the presence of Intune-deployed apps to build its skip list, so those apps need to be installed first.</div>
+    </div>
+  </div>
+
+  <div class="step" id="s17">
+    <div class="step-num">STEP 17</div>
+    <h3>Check for Remaining Apps and Manually Remove</h3>
+    <p>The bloatware script handles most pre-installed Windows apps, but some items may remain because they run as Windows services rather than installed apps. Go to <strong>Settings &gt; Apps &gt; Installed apps</strong> and check for anything that should still be removed.</p>
+    <p>Common items that survive the script and should be uninstalled manually when present:</p>
     <div class="uninstall-grid">
       <div class="uninstall-item"><span class="x-icon">&#10005;</span> McAfee</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Dell SupportAssist</div>
       <div class="uninstall-item"><span class="x-icon">&#10005;</span> Dell Digital Delivery</div>
-      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft Family</div>
-      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Mail &amp; Calendar</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> MyDell</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Dell Data Manager</div>
       <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft Teams</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft Family</div>
       <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft Outlook</div>
-      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Xbox applications</div>
       <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft OneNote</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Mail &amp; Calendar</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Xbox applications</div>
+      <div class="uninstall-item"><span class="x-icon">&#10005;</span> Microsoft 365 Copilot</div>
     </div>
     <div class="callout warn">
       <span class="callout-icon">&#9888;</span>
@@ -792,14 +819,21 @@
     </div>
   </div>
 
+  <div class="step" id="s18">
+    <div class="step-num">STEP 18</div>
+    <h3>Restart the Device</h3>
+    <p>After the bloatware script and any manual uninstalls are complete, restart the laptop. This allows all removals to finalize and clears any residual background processes from uninstalled applications.</p>
+    <p>After the restart, briefly check <strong>Settings &gt; Apps &gt; Installed apps</strong> to confirm the removed items are gone and that all CLERC applications (Chrome, Google Drive, Adobe Acrobat, Asana, Zoom) are still present and working.</p>
+  </div>
+
 
   <!-- ═══════════ SECURITY VERIFICATION ═══════════ -->
-  <div class="section-header" id="s17">
+  <div class="section-header" id="s19">
     <h2><span class="badge">Section 6</span> Security Verification</h2>
   </div>
 
   <div class="step">
-    <div class="step-num">STEP 17</div>
+    <div class="step-num">STEP 19</div>
     <h3>Verify Windows Security</h3>
     <ol>
       <li>Search Windows for <strong>Virus &amp; threat protection</strong>.</li>
@@ -809,26 +843,26 @@
     </ol>
   </div>
 
-  <div class="step" id="s18">
-    <div class="step-num">STEP 18</div>
+  <div class="step" id="s20">
+    <div class="step-num">STEP 20</div>
     <h3>Verify Company Portal / Managed Applications</h3>
     <p>Open <strong>Company Portal</strong> and confirm it loads correctly. Verify expected managed applications are present or available. Complete any required installs that have not arrived automatically.</p>
   </div>
 
 
   <!-- ═══════════ WORKSTATION HARDWARE SETUP ═══════════ -->
-  <div class="section-header" id="s19">
+  <div class="section-header" id="s21">
     <h2><span class="badge">Section 7</span> Workstation Hardware Setup</h2>
   </div>
 
   <div class="step">
-    <div class="step-num">STEP 19</div>
+    <div class="step-num">STEP 21</div>
     <h3>Connect Peripherals</h3>
     <p>Connect the external keyboard and mouse and verify both work correctly.</p>
   </div>
 
-  <div class="step" id="s20">
-    <div class="step-num">STEP 20</div>
+  <div class="step" id="s22">
+    <div class="step-num">STEP 22</div>
     <h3>Connect and Arrange Monitors</h3>
     <ol>
       <li>Connect monitors through the HDMI splitter, dock, or approved adapter.</li>
@@ -899,7 +933,10 @@
       <label class="check-item"><input type="checkbox"> Asana desktop app is installed and working</label>
       <label class="check-item"><input type="checkbox"> Zoom account/app is working</label>
       <label class="check-item"><input type="checkbox"> Adobe Acrobat / Reader is installed, signed in, and updated</label>
-      <label class="check-item"><input type="checkbox"> Unneeded applications were removed or documented as role exceptions</label>
+      <label class="check-item"><input type="checkbox"> Bloatware removal script was run from Company Portal</label>
+      <label class="check-item"><input type="checkbox"> Remaining unneeded apps manually removed</label>
+      <label class="check-item"><input type="checkbox"> Device restarted after all removals</label>
+      <label class="check-item"><input type="checkbox"> CLERC apps confirmed working after restart</label>
     </div>
 
     <div class="check-group">
