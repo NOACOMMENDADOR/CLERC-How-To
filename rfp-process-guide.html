@@ -133,10 +133,14 @@
       transition: all 0.15s;
       line-height: 1.4;
     }
-    .nav-group a:hover {
+    .nav-group a:hover,
+    .nav-group a.active {
       background: var(--accent-light);
       border-left-color: var(--accent);
       color: var(--accent);
+    }
+    .nav-group a.active {
+      font-weight: 700;
     }
 
     /* ===== MAIN CONTENT ===== */
@@ -343,6 +347,27 @@
       background: var(--warm);
     }
 
+    /* ===== CONDITIONAL BLOCKS ===== */
+    .conditional-block {
+      background: var(--teal-light);
+      border: 2px dashed var(--teal);
+      border-radius: 12px;
+      padding: 20px 24px 8px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .conditional-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+    .conditional-block .step-card {
+      margin-bottom: 12px;
+    }
+
     /* ===== FOLDER TREE ===== */
     .folder-tree {
       background: var(--grey-light);
@@ -441,7 +466,8 @@
         border-bottom: 2px solid transparent;
         font-size: 0.78rem;
       }
-      .nav-group a:hover {
+      .nav-group a:hover,
+      .nav-group a.active {
         border-left: none;
         border-bottom-color: var(--accent);
       }
@@ -803,7 +829,7 @@
       <div class="step-card">
         <div class="step-num">2</div>
         <h3>Setting up form fields</h3>
-        <ol start="8">
+        <ol>
           <li>The form should now display the proposal form without the fill-in lines. You need to create text input boxes for each fillable area.</li>
           <li>In the top-left corner, click the <strong>clipboard icon with the blue number badge</strong>. This auto-populates fields on the current page.</li>
           <li><strong>Review the auto-populated fields:</strong>
@@ -819,7 +845,7 @@
             </ul>
           </li>
           <li><strong>For any multi-line text boxes:</strong> Right-click the box &gt; Edit &gt; check <strong>"Multi-line Data Entry"</strong> &gt; expand the Appearance section &gt; set font size to <strong>12</strong> &gt; Save. This must be done for every box that allows more than one line of text.</li>
-          <li>Repeat steps 9-12 for <strong>each page</strong> of the form (click the clipboard icon on each page to auto-populate, then review and adjust).</li>
+          <li>Repeat steps 2-5 for <strong>each page</strong> of the form (click the clipboard icon on each page to auto-populate, then review and adjust).</li>
           <li>When all pages are complete, click <strong>Next</strong> and continue.</li>
         </ol>
       </div>
@@ -827,7 +853,7 @@
       <div class="step-card">
         <div class="step-num">3</div>
         <h3>Test the form</h3>
-        <ol start="15">
+        <ol>
           <li>The next screen displays a shareable link. <strong>Copy the first link.</strong></li>
           <li><strong>Test before sharing:</strong> Open the link in an incognito/private browser window and fill out a test submission. Verify that all fields accept input, multi-line boxes work correctly, and the form submits without errors. After testing, delete the test submission from the Adobe Acrobat dashboard.</li>
         </ol>
@@ -840,7 +866,7 @@
       <div class="step-card">
         <div class="step-num">4</div>
         <h3>Save the share link</h3>
-        <ol start="17">
+        <ol>
           <li>Paste the link into a comment on the Asana subtask: <code>[Project Name] &gt; Solicit Bids From Contractors &gt; Digitize the Proposal Form</code>. Mark that subtask as complete.</li>
           <li>Open the <strong>RFP Links file</strong> (<code>Operations &gt; Agreements &amp; Contracts &gt; RFP-Request for Proposals &gt; [project folder] &gt; Emails &amp; Communications &gt; [Links file]</code>).</li>
           <li>Paste the Adobe form link under the <strong>"Digital Proposal Form"</strong> section of the links file.</li>
@@ -1235,37 +1261,33 @@ Rules:
       <h3 class="sub-heading">Part 2: Add the Q&amp;A to Squarespace</h3>
 
       <div class="step-card">
-        <div class="step-num">2</div>
+        <div class="step-num">1</div>
         <h3>Open Squarespace and prepare the page</h3>
-        <ol start="4">
+        <ol>
           <li>Open the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>. In the left sidebar, click <strong>Pages</strong>, find the <strong>RFP Q&amp;A</strong> page, and click <strong>Edit</strong>.</li>
           <li>Scroll past the General FAQ section.</li>
         </ol>
       </div>
 
-      <div class="content-block">
-        <h3>If old Q&amp;A sections need archiving (for projects already awarded):</h3>
+      <div class="conditional-block">
+        <div class="conditional-label">Conditional: Only if old Q&amp;A sections need archiving (for projects already awarded)</div>
+
+        <div class="step-card">
+          <div class="step-num" style="background: var(--teal);">2</div>
+          <h3>Archive outdated Q&amp;A sections</h3>
+          <ol>
+            <li>Remove any navigation buttons for awarded projects and rearrange remaining buttons if needed.</li>
+            <li>For each outdated Q&amp;A section: click just outside the code block (on the section itself, not the code block within it). A popup starting with "Edit Section" should appear.</li>
+            <li>Click the <strong>heart icon</strong> at the bottom of the popup. Select <strong>"Save section to this site."</strong> This saves the entire section for reuse on another page.</li>
+            <li>Delete the old section from the page.</li>
+          </ol>
+        </div>
       </div>
 
       <div class="step-card">
         <div class="step-num">3</div>
-        <h3>Archive outdated Q&amp;A sections</h3>
-        <ol start="6">
-          <li>Remove any navigation buttons for awarded projects and rearrange remaining buttons if needed.</li>
-          <li>For each outdated Q&amp;A section: click just outside the code block (on the section itself, not the code block within it). A popup starting with "Edit Section" should appear.</li>
-          <li>Click the <strong>heart icon</strong> at the bottom of the popup. Select <strong>"Save section to this site."</strong> This saves the entire section for reuse on another page.</li>
-          <li>Delete the old section from the page.</li>
-        </ol>
-      </div>
-
-      <div class="content-block">
-        <h3>Adding the new Q&amp;A section:</h3>
-      </div>
-
-      <div class="step-card">
-        <div class="step-num">4</div>
         <h3>Add blank section and code block</h3>
-        <ol start="10">
+        <ol>
           <li>Below the most recent Q&amp;A section, click the blue <strong>"Add Section"</strong> bar.</li>
           <li>Choose <strong>"+ Add Blank Section"</strong> from the left menu.</li>
           <li>Hover over the new blank section. Click <strong>"Edit Section"</strong>.</li>
@@ -1281,14 +1303,10 @@ Rules:
         </ol>
       </div>
 
-      <div class="content-block">
-        <h3>Add a navigation button:</h3>
-      </div>
-
       <div class="step-card">
-        <div class="step-num">5</div>
+        <div class="step-num">4</div>
         <h3>Create navigation button and save links</h3>
-        <ol start="22">
+        <ol>
           <li>Hover over the section again. Click <strong>"Edit Section"</strong> to reopen the right-side panel. You'll see the anchor link name you entered earlier. Click the <strong>clipboard/copy icon</strong> directly to the right of it to copy the full anchor link URL to your clipboard.</li>
           <li>Scroll up to the <strong>"Project Specific FAQs"</strong> button area.</li>
           <li>Add a new <strong>Button block</strong> and position it appropriately.</li>
@@ -1300,28 +1318,28 @@ Rules:
         </ol>
       </div>
 
-      <div class="content-block">
-        <h3>If you archived sections, add them to the archive page:</h3>
-      </div>
+      <div class="conditional-block">
+        <div class="conditional-label">Conditional: Only if you archived sections above</div>
 
-      <div class="step-card">
-        <div class="step-num">6</div>
-        <h3>Restore archived sections to archive page</h3>
-        <ol start="30">
-          <li>Find the <strong>"Archived RFP FAQs"</strong> page in Squarespace. Click Edit.</li>
-          <li>Scroll to the bottom and click <strong>"Add Section"</strong>.</li>
-          <li>Select <strong>"Saved"</strong> from the left menu.</li>
-          <li>Select the Q&amp;A section(s) you saved earlier (add them in order from oldest to most recent if multiple).</li>
-          <li>Verify they display correctly. Save and exit.</li>
-        </ol>
+        <div class="step-card">
+          <div class="step-num" style="background: var(--teal);">5</div>
+          <h3>Restore archived sections to archive page</h3>
+          <ol>
+            <li>Find the <strong>"Archived RFP FAQs"</strong> page in Squarespace. Click Edit.</li>
+            <li>Scroll to the bottom and click <strong>"Add Section"</strong>.</li>
+            <li>Select <strong>"Saved"</strong> from the left menu.</li>
+            <li>Select the Q&amp;A section(s) you saved earlier (add them in order from oldest to most recent if multiple).</li>
+            <li>Verify they display correctly. Save and exit.</li>
+          </ol>
+        </div>
       </div>
 
       <h3 class="sub-heading">Part 3: Create and send the Q&amp;A reminder email</h3>
 
       <div class="step-card">
-        <div class="step-num">7</div>
+        <div class="step-num">1</div>
         <h3>Build and send the Q&amp;A email</h3>
-        <ol start="35">
+        <ol>
           <li>Open <a href="https://crm.bloomerang.co/Mailing/Email/Template" class="inline-link" target="_blank">Bloomerang Email Templates</a>. Create a new email using the template <strong>"RFP Q&amp;A Email Template"</strong>.</li>
           <li><strong>Header tab:</strong> Fill in the relevant RFP info.</li>
           <li><strong>Design tab:</strong>
@@ -1481,5 +1499,32 @@ Rules:
     </main>
   </div>
 
+  <script>
+    // Scroll-spy: highlight the sidebar link for the section currently on screen
+    (function() {
+      var links = document.querySelectorAll('.nav-group a[href^="#"]');
+      var sections = [];
+      links.forEach(function(link) {
+        var id = link.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ id: id, el: el, link: link });
+      });
+
+      function onScroll() {
+        var scrollY = window.scrollY + 120;
+        var current = null;
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el.offsetTop <= scrollY) {
+            current = sections[i];
+          }
+        }
+        links.forEach(function(l) { l.classList.remove('active'); });
+        if (current) current.link.classList.add('active');
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
