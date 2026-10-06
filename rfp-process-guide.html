@@ -1061,7 +1061,85 @@
 
 Use this exact template and fill in every value from the attached documents. Keep all class names exactly as written:
 
-[... full HTML template as documented ...]
+&lt;!-- RFP-XXXX --&gt;
+
+&lt;div class="clerc-rfps__card"&gt;
+  &lt;p class="clerc-rfps__eyebrow"&gt;Current RFP&lt;/p&gt;
+  &lt;h2 class="clerc-rfps__title"&gt;RFP-XXXX: [PROJECT NAME]&lt;/h2&gt;
+
+  &lt;ul class="clerc-rfps__meta"&gt;
+    &lt;li&gt;&lt;strong&gt;RFP released:&lt;/strong&gt; [DATE]&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Site visit:&lt;/strong&gt; [DAY, DATE at TIME]&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Questions deadline:&lt;/strong&gt; [DAY, DATE at TIME]&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Proposal deadline:&lt;/strong&gt; [DAY, DATE at TIME]&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Anticipated award:&lt;/strong&gt; [DAY, DATE]&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p class="clerc-rfps__desc"&gt;
+    CLERC is seeking a qualified contractor to perform vegetation management services for the
+    [PROJECT NAME] project in [CITY/AREA], funded through our Community Wildfire Defense Grant
+    ([GRANT NUMBER]). Work includes [KEY SCOPE ELEMENTS, one sentence pulled from the RFP's
+    "Key elements include" list], and compliance with environmental best management practices and
+    traffic safety requirements. The included treatment area may be up to [ACREAGE] acres.
+    All work must be completed and invoiced no later than [COMPLETION DATE][, or within six (6) weeks of contract execution -- include this clause only if the RFP states it].
+  &lt;/p&gt;
+
+  &lt;div class="clerc-rfps__split"&gt;
+    &lt;div class="clerc-rfps__panel"&gt;
+      &lt;h4&gt;Pre-Proposal Site Visit (Strongly Encouraged)&lt;/h4&gt;
+      &lt;p&gt;
+        &lt;strong&gt;[DAY, DATE at TIME]&lt;/strong&gt;&lt;br&gt;
+        [SITE VISIT LOCATION / MEETING SPOT]&lt;br&gt;&lt;br&gt;
+        Duration: approximately one hour. This is the primary opportunity to review site conditions and ask questions.
+        &lt;br&gt;&lt;br&gt;
+        &lt;a href="[RSVP LINK]" target="_blank" rel="noopener"&gt;&lt;strong&gt;RSVP for the Walkthrough&lt;/strong&gt;&lt;/a&gt;
+        &lt;br&gt;&lt;br&gt;Contact: Laura McAndrews Sammel, (707) 261-0008 ext. 3.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="clerc-rfps__panel"&gt;
+      &lt;h4&gt;Submit Your Proposal (Pre-Qualified Contractors)&lt;/h4&gt;
+      &lt;p&gt;
+        Complete the Contractor Proposal Form online, or download a copy to print and fill out by hand.
+        Printed submissions can be emailed as a scan to
+        &lt;a href="mailto:documents@theclerc.org"&gt;documents@theclerc.org&lt;/a&gt;
+        with the subject line: &lt;strong&gt;CLERC RFP-XXXX [PROJECT NAME]&lt;/strong&gt;.
+      &lt;/p&gt;
+      &lt;ul class="clerc-rfps__bullets"&gt;
+        &lt;li&gt;Include your approach, crew and equipment capacity, and anticipated timeline&lt;/li&gt;
+        &lt;li&gt;Provide clear pricing (cost per acre)&lt;/li&gt;
+        &lt;li&gt;Demonstrate ability to complete work within six (6) weeks&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="clerc-rfps__btnrow"&gt;
+    &lt;a class="clerc-rfps__btn clerc-rfps__btn--primary" href="[FULL RFP PDF]" target="_blank" rel="noopener"&gt;
+      View Full RFP (PDF)
+    &lt;/a&gt;
+    &lt;a class="clerc-rfps__btn clerc-rfps__btn--primary" href="[DIGITAL PROPOSAL FORM / ADOBE LINK]" target="_blank" rel="noopener"&gt;
+      Fill Out Proposal Form Online
+    &lt;/a&gt;
+    &lt;a class="clerc-rfps__btn" href="[PRINT PROPOSAL FORM PDF]" target="_blank" rel="noopener"&gt;
+      Download &amp;amp; Print Proposal Form
+    &lt;/a&gt;
+    &lt;a class="clerc-rfps__btn" href="[EXHIBIT A SOW PDF]" target="_blank" rel="noopener"&gt;
+      View Scope of Work (Exhibit A)
+    &lt;/a&gt;
+    &lt;a class="clerc-rfps__btn" href="[EXHIBIT B MAP PDF]" target="_blank" rel="noopener"&gt;
+      View Project Map (Exhibit B)
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;p class="clerc-rfps__fineprint"&gt;
+    &lt;strong&gt;Questions deadline: [DAY, DATE at TIME].&lt;/strong&gt; No additional questions will be answered after that time.
+    Submit written questions to &lt;a href="mailto:documents@theclerc.org"&gt;documents@theclerc.org&lt;/a&gt;
+    with the subject line: CLERC RFP-XXXX [PROJECT NAME] Questions.
+    &lt;br&gt;
+    Alternate submission options (if needed): mail to CLERC, P.O. Box 636, Lakeport, CA 95453
+    or drop off at 125 Park Street, Lakeport, CA (M&amp;ndash;F, 8am&amp;ndash;5pm).
+  &lt;/p&gt;
+&lt;/div&gt;
 
 Rules for filling it in:
 - Pull the schedule dates, site visit location, grant number, and scope language from the RFP document. Pull the acreage and the project location from the SOW (Exhibit A).
@@ -1239,17 +1317,41 @@ Before you give me the HTML, flag any of these if you spot them: the grant numbe
 
 Generate the HTML using this structure for each item:
 
-[... full HTML template as documented ...]
+&lt;section class="clerc-qa" id="rfp-[NUMBER]" aria-labelledby="clerc-qa-title-[NUMBER]"&gt;
+  &lt;div class="clerc-qa__header"&gt;
+    &lt;p class="clerc-qa__eyebrow" id="clerc-qa-title-[NUMBER]"&gt;RFP-[NUMBER] -- Contractor Q&amp;amp;A&lt;/p&gt;
+    &lt;h2 class="clerc-qa__title"&gt;[PROJECT TITLE FROM DOCUMENT]&lt;/h2&gt;
+    &lt;p class="clerc-qa__subtitle"&gt;Project-specific questions and answers. For contacts, site visit, invoicing, proposal scoring, and tree permits, see the &lt;a href="#rfp-general-faq"&gt;General RFP FAQ&lt;/a&gt;.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="clerc-qa__notice"&gt;
+    &lt;strong&gt;Proposal deadline:&lt;/strong&gt; [DAY], [MONTH] [DATE], [YEAR] by [TIME] &lt;br&gt;
+    Questions? &lt;a href="mailto:documents@theclerc.org"&gt;documents@theclerc.org&lt;/a&gt; &amp;middot; (707) 261-0008 ext. 3
+  &lt;/div&gt;
+
+  &lt;!-- Q# -- Short label --&gt;
+  &lt;div class="clerc-qa__item"&gt;
+    &lt;button class="clerc-qa__question" aria-expanded="false" onclick="this.parentElement.classList.toggle('is-open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('is-open'));var a=this.nextElementSibling;if(this.parentElement.classList.contains('is-open')){a.style.maxHeight=a.scrollHeight+'px'}else{a.style.maxHeight='0'}"&gt;
+      &lt;span class="clerc-qa__num"&gt;[#]&lt;/span&gt;
+      &lt;span&gt;[QUESTION TEXT EXACTLY AS WRITTEN]&lt;/span&gt;
+      &lt;svg class="clerc-qa__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;polyline points="6 9 12 15 18 9"/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;div class="clerc-qa__answer"&gt;&lt;div class="clerc-qa__answer-inner"&gt;
+      [ANSWER TEXT EXACTLY AS WRITTEN]
+    &lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/section&gt;
 
 Rules:
 - Copy all question and answer text verbatim from the source document. Do not fix spelling, grammar, or phrasing.
 - Pull the proposal deadline from the RFP document and format it as: Day, Month Date, Year by Time.
-- Use &amp;rsquo; for apostrophes, &amp;ldquo; and &amp;rdquo; for quotation marks, &amp;ndash; for dashes.
-- If the Safety briefing is a bulleted list, render each bullet as &lt;li&gt;&lt;strong&gt;[Hazard label]:&lt;/strong&gt; [text]&lt;/li&gt; inside a &lt;ul&gt;.
+- Use &amp;rsquo; for apostrophes, &amp;ldquo; and &amp;rdquo; for quotation marks, &amp;ndash; for dashes, and &amp;rdquo; for inch/foot marks where they appear.
+- If the Safety briefing is a bulleted list in the source, render each bullet as &lt;li&gt;&lt;strong&gt;[Hazard label]:&lt;/strong&gt; [text]&lt;/li&gt; inside a &lt;ul&gt;.
 - If the Scope of Work or Rights of Entry sections are informational (not a Q&amp;A pair), still wrap them as accordion items using the heading as the question text.
 - If a paragraph break exists in the source, use &lt;br&gt;&lt;br&gt; between paragraphs in the answer.
 - If a hyperlink appears in the source, render it as a standard &lt;a href="[URL]"&gt;[link text]&lt;/a&gt;.
-- Do not add any commentary unless there is an obvious spelling error or inconsistency, in which case ask whether to fix it.</pre>
+- Do not add any commentary, notes, or suggestions after the code block unless there is an obvious spelling error or inconsistency in which case prompt the user if they want you to fix it.</pre>
           </div>
         </details>
 
