@@ -536,6 +536,7 @@
         <div class="nav-group-title">Closing</div>
         <a href="#interim">Interim: Incoming Bids</a>
         <a href="#phase-14">Phase 14: Award Emails</a>
+        <a href="#post-award-cleanup">Post-Award Cleanup</a>
       </div>
     </nav>
 
@@ -1371,23 +1372,12 @@ Rules:
         </ol>
       </div>
 
-      <div class="conditional-block">
-        <div class="conditional-label">Conditional: Only if old Q&amp;A sections need archiving (for projects already awarded)</div>
-
-        <div class="step-card">
-          <div class="step-num" style="background: var(--teal);">2</div>
-          <h3>Archive outdated Q&amp;A sections</h3>
-          <ol>
-            <li>Remove any navigation buttons for awarded projects and rearrange remaining buttons if needed.</li>
-            <li>For each outdated Q&amp;A section: click just outside the code block (on the section itself, not the code block within it). A popup starting with "Edit Section" should appear.</li>
-            <li>Click the <strong>heart icon</strong> at the bottom of the popup. Select <strong>"Save section to this site."</strong> This saves the entire section for reuse on another page.</li>
-            <li>Delete the old section from the page.</li>
-          </ol>
-        </div>
+      <div class="callout info">
+        <p><strong>Cleaning up old Q&amp;A sections?</strong> If any Q&amp;A sections on this page belong to RFPs that have already been awarded, they should be archived before adding new content. "Archiving" means saving the section in Squarespace, removing it from the live Q&amp;A page, and restoring it to the Archived RFP FAQs page. Full steps are in <a href="#post-award-cleanup" class="inline-link">Post-Award Website Cleanup</a>. Complete that process first, then continue here.</p>
       </div>
 
       <div class="step-card">
-        <div class="step-num">3</div>
+        <div class="step-num">2</div>
         <h3>Add blank section and code block</h3>
         <ol>
           <li>Below the most recent Q&amp;A section, click the blue <strong>"Add Section"</strong> bar.</li>
@@ -1406,7 +1396,7 @@ Rules:
       </div>
 
       <div class="step-card">
-        <div class="step-num">4</div>
+        <div class="step-num">3</div>
         <h3>Create navigation button and save links</h3>
         <ol>
           <li>Hover over the section again. Click <strong>"Edit Section"</strong> to reopen the right-side panel. You'll see the anchor link name you entered earlier. Click the <strong>clipboard/copy icon</strong> directly to the right of it to copy the full anchor link URL to your clipboard.</li>
@@ -1418,22 +1408,6 @@ Rules:
           <li><strong>Save</strong> the Squarespace page.</li>
           <li>Open the page on the front end and verify all accordions expand/collapse and links work.</li>
         </ol>
-      </div>
-
-      <div class="conditional-block">
-        <div class="conditional-label">Conditional: Only if you archived sections above</div>
-
-        <div class="step-card">
-          <div class="step-num" style="background: var(--teal);">5</div>
-          <h3>Restore archived sections to archive page</h3>
-          <ol>
-            <li>Find the <strong>"Archived RFP FAQs"</strong> page in Squarespace. Click Edit.</li>
-            <li>Scroll to the bottom and click <strong>"Add Section"</strong>.</li>
-            <li>Select <strong>"Saved"</strong> from the left menu.</li>
-            <li>Select the Q&amp;A section(s) you saved earlier (add them in order from oldest to most recent if multiple).</li>
-            <li>Verify they display correctly. Save and exit.</li>
-          </ol>
-        </div>
       </div>
 
       <h3 class="sub-heading">Part 3: Create and send the Q&amp;A reminder email</h3>
@@ -1587,14 +1561,57 @@ Rules:
         </ol>
       </div>
 
-      <h3 class="sub-heading">Post-Award Website Cleanup</h3>
+      <!-- ============================================ -->
+      <!-- POST-AWARD WEBSITE CLEANUP -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="post-award-cleanup">
+        Post-Award Website Cleanup
+        <span class="badge">Closing</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>When to do this:</strong> After an RFP has been awarded and the award/no-award emails have been sent. The goal is to remove the RFP from the active listings on the website and move the Q&amp;A content to the archive so it stays accessible for reference without appearing current.</p>
+        <p><strong>Prerequisites:</strong> Squarespace editing access.</p>
+      </div>
+
+      <h3 class="sub-heading">Part 1: Remove the RFP web card</h3>
 
       <div class="step-card">
-        <div class="step-num">4</div>
-        <h3>Clean up the website</h3>
-        <ol start="18">
-          <li><strong>Remove the web card</strong> from the Contractor Interest Form page on Squarespace so the RFP is no longer listed as active.</li>
-          <li><strong>Archive the Q&amp;A page:</strong> Move (or copy) the Q&amp;A content to the <strong>Archived RFP FAQs</strong> page so it remains accessible for reference but is no longer displayed as current.</li>
+        <div class="step-num">1</div>
+        <h3>Delete the web card from the Contractor Interest Form page</h3>
+        <ol>
+          <li>Open the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>. In the left sidebar, click <strong>Pages</strong>, expand the <strong>Connect</strong> section, and click <strong>Contractor Interest Form</strong>. Click <strong>Edit</strong>.</li>
+          <li>Scroll down to the <strong>Current RFPs</strong> section.</li>
+          <li>Click the section containing the web card code block. The code editor should open.</li>
+          <li>Find the HTML block for the awarded RFP's card (look for the <code>&lt;!-- RFP-#### --&gt;</code> comment and its surrounding <code>&lt;div class="clerc-rfps__card"&gt;</code>). Select the entire card block and delete it.</li>
+          <li><strong>Save</strong> the page. Verify the card is no longer visible on the front end.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">Part 2: Archive the Q&amp;A section</h3>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Save and remove the Q&amp;A from the live page</h3>
+        <ol>
+          <li>Open the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>. In the left sidebar, click <strong>Pages</strong>, find the <strong>RFP Q&amp;A</strong> page, and click <strong>Edit</strong>.</li>
+          <li>Remove the navigation button for the awarded project and rearrange remaining buttons if needed.</li>
+          <li>For the awarded project's Q&amp;A section: click just outside the code block (on the section itself, not the code block within it). A popup starting with "Edit Section" should appear.</li>
+          <li>Click the <strong>heart icon</strong> at the bottom of the popup. Select <strong>"Save section to this site."</strong> This saves the entire section for reuse on another page.</li>
+          <li>Delete the section from the page.</li>
+          <li><strong>Save</strong> the Q&amp;A page.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Restore the archived section to the Archived RFP FAQs page</h3>
+        <ol>
+          <li>Find the <strong>"Archived RFP FAQs"</strong> page in Squarespace. Click Edit.</li>
+          <li>Scroll to the bottom and click <strong>"Add Section"</strong>.</li>
+          <li>Select <strong>"Saved"</strong> from the left menu.</li>
+          <li>Select the Q&amp;A section you saved in the previous step.</li>
+          <li>Verify it displays correctly. Save and exit.</li>
         </ol>
       </div>
 
