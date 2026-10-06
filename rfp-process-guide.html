@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFP Process Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #faf9f6;
+      --accent: #059669;
+      --accent-light: #d1fae5;
+      --accent-mid: #34d399;
+      --warm: #f59e0b;
+      --blue: #2563eb;
+      --blue-light: #dbeafe;
+      --teal: #0d9488;
+      --teal-light: #ccfbf1;
+      --green: #16a34a;
+      --green-light: #dcfce7;
+      --grey: #6b7280;
+      --grey-light: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      background: var(--ink);
+      color: #fff;
+      padding: 18px 32px;
+      position: relative;
+    }
+    .site-header::after {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-mid), var(--accent));
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .header-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .header-subtitle {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .back-link {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #fff; }
+    .back-link svg { width: 16px; height: 16px; }
+
+    /* ===== LAYOUT ===== */
+    .page-wrapper {
+      display: flex;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 0 40px 0;
+      border-right: 1px solid var(--border);
+      background: var(--paper);
+      scrollbar-width: thin;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .nav-group { margin-bottom: 20px; }
+    .nav-group-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--grey);
+      font-weight: 700;
+      padding: 0 20px;
+      margin-bottom: 6px;
+    }
+    .nav-group a {
+      display: block;
+      padding: 5px 20px 5px 18px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+      line-height: 1.4;
+    }
+    .nav-group a:hover {
+      background: var(--accent-light);
+      border-left-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      flex: 1;
+      max-width: 820px;
+      padding: 36px 48px 80px;
+      min-width: 0;
+    }
+
+    /* ===== PURPOSE BOX ===== */
+    .purpose-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+    }
+    .purpose-box h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .purpose-box p {
+      color: var(--grey);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+    .systems-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .systems-chips .chip {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      font-family: 'Fraunces', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--ink);
+      padding-bottom: 10px;
+      border-bottom: 3px solid var(--accent);
+      margin: 48px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .section-header:first-of-type { margin-top: 0; }
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+    .badge.interim-badge {
+      background: var(--warm);
+    }
+
+    /* ===== STEP CARDS ===== */
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 24px 28px 24px 50px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .step-num {
+      position: absolute;
+      left: -14px;
+      top: 20px;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+    .step-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .step-card p, .step-card li {
+      font-size: 0.92rem;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    .step-card ul, .step-card ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+    .step-card li { margin-bottom: 5px; }
+    .step-card code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      background: var(--grey-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      color: var(--accent);
+    }
+
+    /* ===== CONTENT BLOCKS (non-step) ===== */
+    .content-block {
+      margin-bottom: 18px;
+    }
+    .content-block p {
+      font-size: 0.92rem;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    .content-block ul, .content-block ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      color: #374151;
+    }
+    .content-block li { margin-bottom: 5px; }
+    .content-block code {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      background: var(--grey-light);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      color: var(--accent);
+    }
+    .content-block strong { font-weight: 600; }
+    .content-block h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 18px;
+      color: var(--ink);
+    }
+
+    /* ===== CALLOUT BOXES ===== */
+    .callout {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+    .callout p { margin: 0; }
+    .callout strong { font-weight: 700; }
+    .tip {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      color: #065f46;
+    }
+    .warn {
+      background: #fff7ed;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+    .info {
+      background: var(--blue-light);
+      border-left: 4px solid var(--blue);
+      color: #1e40af;
+    }
+
+    /* ===== INTERIM SECTION ===== */
+    .interim-section {
+      background: #fffbeb;
+      border: 2px solid #fbbf24;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+    }
+    .interim-section .section-header {
+      border-bottom-color: var(--warm);
+      margin-top: 0;
+    }
+    .interim-section .step-num {
+      background: var(--warm);
+    }
+
+    /* ===== FOLDER TREE ===== */
+    .folder-tree {
+      background: var(--grey-light);
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.84rem;
+      color: var(--ink);
+      margin-bottom: 14px;
+      line-height: 1.7;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* ===== DETAILS / COLLAPSIBLE ===== */
+    details {
+      background: var(--grey-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    details summary {
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    details summary::before {
+      content: '\25B6';
+      font-size: 0.7rem;
+      transition: transform 0.2s;
+    }
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details .details-content {
+      padding: 0 18px 16px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    details .details-content pre {
+      background: #1a1a2e;
+      color: #e2e8f0;
+      padding: 16px 20px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* ===== SUB HEADINGS WITHIN PHASES ===== */
+    .sub-heading {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 24px 0 12px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        overflow-y: visible;
+        overflow-x: auto;
+      }
+      .nav-group {
+        margin-bottom: 8px;
+        width: 100%;
+      }
+      .nav-group-title {
+        padding: 0 16px;
+      }
+      .nav-group a {
+        display: inline-block;
+        padding: 4px 12px;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        font-size: 0.78rem;
+      }
+      .nav-group a:hover {
+        border-left: none;
+        border-bottom-color: var(--accent);
+      }
+      .page-wrapper {
+        flex-direction: column;
+      }
+      .main-content {
+        padding: 24px 16px 60px;
+      }
+      .site-header { padding: 14px 16px; }
+      .step-card { padding-left: 44px; }
+      .purpose-box { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <div class="header-title">RFP Process Guide</div>
+        <div class="header-subtitle">Operations &middot; RFP Lifecycle</div>
+      </div>
+      <a href="index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        Back to Guides
+      </a>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+
+    <!-- ===== SIDEBAR ===== -->
+    <nav class="sidebar">
+      <div class="nav-group">
+        <div class="nav-group-title">Setup</div>
+        <a href="#phase-0">Phase 0: Folder Setup</a>
+        <a href="#phase-1">Phase 1: Verify Prerequisites</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Drafting</div>
+        <a href="#phase-2">Phase 2: Create the RFP</a>
+        <a href="#phase-3">Phase 3: Proposal Form</a>
+        <a href="#phase-4">Phase 4: Internal Review</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Digital Prep</div>
+        <a href="#phase-5">Phase 5: Create PDFs</a>
+        <a href="#phase-6">Phase 6: Digitize Form</a>
+        <a href="#phase-7">Phase 7: Upload to Squarespace</a>
+        <a href="#phase-8">Phase 8: RSVP Link</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Outreach</div>
+        <a href="#phase-9">Phase 9: Announcement Email</a>
+        <a href="#phase-10">Phase 10: Web Card</a>
+        <a href="#phase-11">Phase 11: Reminder Email</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Site Visit &amp; Q&amp;A</div>
+        <a href="#phase-12">Phase 12: Job Walk &amp; Q&amp;A</a>
+        <a href="#phase-13">Phase 13: Post Q&amp;A</a>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-title">Closing</div>
+        <a href="#interim">Interim: Incoming Bids</a>
+        <a href="#phase-14">Phase 14: Award Emails</a>
+      </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+      <!-- PURPOSE BOX -->
+      <div class="purpose-box">
+        <h2>What This Guide Covers</h2>
+        <p>The complete lifecycle of a Request for Proposals (RFP) at CLERC, from initial document preparation and internal review through contractor outreach, site visits, Q&amp;A posting, and final award notification. The process is managed primarily through Asana, with files stored in Google Drive and communications sent through Bloomerang.</p>
+        <div class="callout info" style="margin-top: 12px; margin-bottom: 14px;">
+          <p><strong>Team note:</strong> Many subtasks within the "Solicit Bids from Contractors" Asana task may be assigned to different people depending on ops team availability. Work is often split among team members. Pay attention to task assignments and communicate with the team to make sure work is distributed properly and that no one is duplicating effort.</p>
+        </div>
+        <div class="systems-chips">
+          <span class="chip">Google Drive</span>
+          <span class="chip">Asana</span>
+          <span class="chip">Adobe Acrobat</span>
+          <span class="chip">Squarespace</span>
+          <span class="chip">Bloomerang</span>
+          <span class="chip">Easy-RSVP</span>
+          <span class="chip">Claude AI</span>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 0 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-0">
+        Phase 0: RFP Folder Setup
+        <span class="badge">Setup</span>
+      </h2>
+
+      <div class="content-block">
+        <p>Before beginning the RFP process, the project folder must exist with the correct structure. Laura typically creates this well before the project goes out to bid, but if it hasn't been set up yet, create it yourself.</p>
+        <p><strong>Location:</strong> <code>Operations &gt; Agreements &amp; Contracts &gt; RFP-Request for Proposals</code></p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Copy the template folder</h3>
+        <p>Find the folder named <code>ZZZ NewProjectFolderTemplate MAKE A COPY</code>. This folder contains all required subfolders (PDFs, Emails &amp; Communications, Proposals for Evaluation, Maps) and all template files already placed in the correct locations.</p>
+        <p><strong>Make a copy</strong> of the entire folder (right-click &gt; Make a copy in Google Drive).</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Rename the folder</h3>
+        <p>Rename the copy to: <code>RFP-#### [Project Name]</code></p>
+        <p>RFP numbers are assigned in ascending numerical order. Choose the next number after the most recently assigned one so the folder sorts correctly within the parent directory.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Rename the Links file</h3>
+        <p>Open the copied folder and rename the RFP Links file in <code>Emails &amp; Communications</code> to: <code>RFP-#### [Project Name] - Links</code></p>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-icon">&#128204;</span>
+        <p>The SOW and Map are not included in the template folder. These are created by the stewardship team and saved in the project folder under <code>Fire &amp; Forestry &gt; GRANTS &gt; [grant funding the project] &gt; PROJECTS &gt; [Project Name]</code>. They get copied into the RFP folder during Phase 1.</p>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 1 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-1">
+        Phase 1: Verify Prerequisites
+        <span class="badge">Setup</span>
+      </h2>
+
+      <div class="content-block">
+        <p>Before starting the RFP process, two items must already be complete:</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Scope of Work (SOW)</h3>
+        <ul>
+          <li>Check the Asana task to confirm the SOW has been completed by Cindy.</li>
+          <li>Cindy typically saves SOWs in: <code>Fire &amp; Forestry &gt; GRANTS &gt; [grant funding the project] &gt; PROJECTS &gt; [Project Name]</code></li>
+          <li>If the SOW is not already in the RFP project folder, copy it there.</li>
+          <li>Rename (if needed) to match naming convention: <code>RFP-#### - Exhibit A - SOW [Project Name] - [Year]</code></li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Project Map</h3>
+        <ul>
+          <li>The project map is typically created by Dylan or another stewardship team member. Check the Asana project for the map task to see who it's assigned to and whether it's been marked complete. Contact the assignee if you need a status update.</li>
+          <li>The map is often saved in the same grants folder structure as the SOW: <code>Fire &amp; Forestry &gt; GRANTS &gt; [grant] &gt; PROJECTS &gt; [Project Name]</code></li>
+          <li>Copy it to the RFP project folder if not already there.</li>
+          <li>Rename to: <code>RFP-#### - Exhibit B - [Project Name] Map - [Year]</code></li>
+        </ul>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 2 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-2">
+        Phase 2: Create the RFP Document
+        <span class="badge">Drafting</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Verify templates are in place</h3>
+        <p>If you created the project folder from the template in Phase 0, all template files should already be present. Confirm these are in the folder before proceeding:</p>
+        <ul>
+          <li>The correct RFP template (choose based on treatment type: Fuel Break vs. Roadside Clearing)</li>
+          <li>CLERC Contractor Proposal Form Template</li>
+          <li>Bid Walk Agenda</li>
+          <li>Bid Walk Sign-In Sheet</li>
+          <li>RFP Links file (in the <code>Emails &amp; Communications</code> subfolder, renamed to <code>RFP-#### [Project Name] - Links</code>)</li>
+        </ul>
+        <div class="callout info" style="margin-top: 12px;">
+          <p><strong>About the Links file:</strong> This is a simple text file that serves as the central reference for all links generated during the RFP process. You'll add links to it throughout Phases 6-13. It contains these sections:</p>
+          <ul style="margin-top: 8px; padding-left: 18px;">
+            <li><strong>RFP:</strong> (Squarespace-hosted PDF link)</li>
+            <li><strong>SOW Exhibit A:</strong> (Squarespace-hosted PDF link)</li>
+            <li><strong>Map Exhibit B:</strong> (Squarespace-hosted PDF link)</li>
+            <li><strong>Proposal Form:</strong> (Squarespace-hosted PRINT PDF link)</li>
+            <li><strong>Digital Proposal Form:</strong> (Adobe web form link)</li>
+            <li><strong>RSVP Link:</strong> (Easy-RSVP invite link)</li>
+            <li><strong>Q&amp;A Section Link:</strong> (Squarespace anchor link)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Fill in the RFP document</h3>
+        <ol>
+          <li>Open the RFP template file in the RFP project folder.</li>
+          <li>Scroll through the document and fill in all highlighted areas. These include:
+            <ul>
+              <li>Project name (appears in multiple locations)</li>
+              <li>RFP number (appears in multiple locations)</li>
+              <li>Project timeline dates</li>
+              <li>Job walk date, time, and location</li>
+            </ul>
+          </li>
+          <li><strong>Before finalizing the job walk date/time:</strong> Confirm that Cindy and at least one ops team member are available. Once confirmed, add the event to Google Calendar and invite the appropriate parties. At minimum, invite Cindy and Laura. Depending on staff availability, a project coordinator and an ops team member should always be included.</li>
+          <li>Confirm the site walk meeting location with Cindy and fill it into the highlighted "Location" field.</li>
+          <li>Update the document footer to reflect the current project.</li>
+          <li>Save the file as: <code>RFP-####-[Project Name]</code></li>
+          <li>Delete the original template file from the RFP folder (you now have the filled-in version).</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 3 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-3">
+        Phase 3: Create the Contractor Proposal Form
+        <span class="badge">Drafting</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Prepare the Proposal Form</h3>
+        <ol>
+          <li>Open the copied Contractor Proposal Form template in Word.</li>
+          <li>Add the RFP number on the top line, along with the project name.</li>
+          <li>After "Estimated Total Cost," add the acreage in parentheses, e.g., <code>(45 acres)</code>, using the acreage from the Scope of Work.</li>
+        </ol>
+        <div class="callout warn" style="margin-top: 10px;">
+          <p><strong>Critical:</strong> The acreage MUST match between the proposal form, the map, and the SOW. Cross-check all three.</p>
+        </div>
+        <ol start="4">
+          <li>Update the footer with the correct project information.</li>
+          <li>Review the page layout. Make sure sections haven't split awkwardly across pages.</li>
+          <li>Save the file as: <code>RFP-####-[Project Name] - Contractor Proposal Form</code></li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 4 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-4">
+        Phase 4: Internal Review
+        <span class="badge">Drafting</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Submit for review</h3>
+        <ol>
+          <li>Once the RFP, SOW, Map, and Contractor Proposal Form are all completed, go to the Asana project and use the <strong>"Draft RFP"</strong> task to signal that drafting is done.</li>
+          <li>Assign the review subtasks (currently unassigned) to the relevant reviewers.</li>
+          <li>Notify all reviewers where the files are located and ask them to review as soon as possible.</li>
+          <li>Wait for all reviewers to complete their review and incorporate any requested edits. If reviewers provide conflicting feedback, escalate to Laura for a final decision.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 5 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-5">
+        Phase 5: Create PDF Versions
+        <span class="badge">Digital Prep</span>
+      </h2>
+
+      <div class="content-block">
+        <p>Once all reviews are complete and edits have been incorporated:</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Standard PDFs</h3>
+        <ol>
+          <li>Open the RFP, SOW, and Proposal Form files in Word.</li>
+          <li>For each file: <code>File &gt; Save As Adobe PDF</code></li>
+          <li>Save all PDFs into the <strong>PDF subfolder</strong> within the RFP project folder.</li>
+          <li><strong>Naming:</strong>
+            <ul>
+              <li>The RFP and SOW files keep their original names.</li>
+              <li>The Proposal Form PDF gets prefixed with <code>PRINT</code>, e.g., <code>PRINT RFP-####-[Project Name] - Contractor Proposal Form.pdf</code></li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Digital (fillable) version of the Proposal Form</h3>
+        <ol start="5">
+          <li>Close all files except the Proposal Form (still open in Word).</li>
+          <li>Go through the document and <strong>remove all the underline/fill-in lines</strong> in sections that have multiple lines (e.g., "Crew Composition"). Replace each set of lines with a blank space of roughly the same height.</li>
+          <li>Check that no awkward page breaks were introduced.</li>
+          <li>Save via <code>File &gt; Save As</code> with the prefix <code>DIGITAL</code>, e.g., <code>DIGITAL RFP-####-[Project Name] - Contractor Proposal Form</code></li>
+          <li>Then <code>File &gt; Save As Adobe PDF</code> into the PDF folder.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Map PDF</h3>
+        <p>The map should already exist as a PDF. Copy it into the PDF folder alongside the other files.</p>
+      </div>
+
+      <div class="callout tip">
+        <p><strong>Result:</strong> The PDF folder now contains:</p>
+        <ul style="margin-top: 6px; padding-left: 18px;">
+          <li>RFP document (PDF)</li>
+          <li>SOW / Exhibit A (PDF)</li>
+          <li>Project Map / Exhibit B (PDF)</li>
+          <li><code>PRINT</code> Contractor Proposal Form (PDF), for printing and handwriting</li>
+          <li><code>DIGITAL</code> Contractor Proposal Form (PDF), for the online fillable version</li>
+        </ul>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 6 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-6">
+        Phase 6: Digitize the Contractor Proposal Form
+        <span class="badge">Digital Prep</span>
+      </h2>
+
+      <div class="content-block">
+        <p>This step turns the DIGITAL PDF into an online fillable form that contractors can complete and submit electronically.</p>
+        <p><strong>Prerequisites:</strong> Have the PDF folder open and accessible.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Create the Adobe Web Form</h3>
+        <ol>
+          <li>Navigate to <a href="https://acrobat.adobe.com/link/home/" style="color: var(--accent);">Adobe Acrobat</a> and sign in using the <code>documents@theclerc.org</code> account.</li>
+          <li>Under the <strong>E-Sign</strong> dropdown menu, select <strong>Create Web Form</strong>.</li>
+          <li>Upload the <code>DIGITAL</code> PDF version of the Contractor Proposal Form (drag and drop or file select).</li>
+          <li>Leave the form name as-is (it defaults to the file name).</li>
+          <li>Under <strong>"Select the required participant action to complete the form"</strong>:
+            <ul>
+              <li>For participant #1, click the "Sign" dropdown and change it to <strong>"Fill Form"</strong> (this requires the contractor to fill out the form, not just sign it).</li>
+            </ul>
+          </li>
+          <li>Under <strong>"Add optional participants"</strong>:
+            <ul>
+              <li>Click the plus sign, use the dropdown to select <strong>"CC / Copied"</strong>, and enter <code>documents@theclerc.org</code>. This ensures CLERC receives a copy when a contractor submits.</li>
+            </ul>
+          </li>
+          <li>Click the blue <strong>Next</strong> button in the top right.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Setting up form fields</h3>
+        <ol start="8">
+          <li>The form should now display the proposal form without the fill-in lines. You need to create text input boxes for each fillable area.</li>
+          <li>In the top-left corner, click the <strong>clipboard icon with the blue number badge</strong>. This auto-populates fields on the current page.</li>
+          <li><strong>Review the auto-populated fields:</strong>
+            <ul>
+              <li>Delete any fields that landed on top of pre-filled areas (like the RFP number and project name that you already entered). Select them and press Delete, or right-click &gt; Delete.</li>
+              <li>For remaining fields, make sure each one is aligned with the correct fill-in area. Resize as needed.</li>
+            </ul>
+          </li>
+          <li>For areas that had multiple lines (where you removed the underlines in Word), you may need to manually add a text box:
+            <ul>
+              <li>Drag <strong>"Text Input"</strong> from the right sidebar (under Data) into the appropriate area.</li>
+              <li>Resize the box to match the available space, left-aligned with other text on the page.</li>
+            </ul>
+          </li>
+          <li><strong>For any multi-line text boxes:</strong> Right-click the box &gt; Edit &gt; check <strong>"Multi-line Data Entry"</strong> &gt; expand the Appearance section &gt; set font size to <strong>12</strong> &gt; Save. This must be done for every box that allows more than one line of text.</li>
+          <li>Repeat steps 9-12 for <strong>each page</strong> of the form (click the clipboard icon on each page to auto-populate, then review and adjust).</li>
+          <li>When all pages are complete, click <strong>Next</strong> and continue.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Test the form</h3>
+        <ol start="15">
+          <li>The next screen displays a shareable link. <strong>Copy the first link.</strong></li>
+          <li><strong>Test before sharing:</strong> Open the link in an incognito/private browser window and fill out a test submission. Verify that all fields accept input, multi-line boxes work correctly, and the form submits without errors. After testing, delete the test submission from the Adobe Acrobat dashboard.</li>
+        </ol>
+      </div>
+
+      <div class="callout tip">
+        <p><strong>Editing after creation:</strong> If you need to make changes to the form after it's been created, you can access your web forms under <strong>E-Sign &gt; Web Forms</strong> in the Adobe Acrobat dashboard at acrobat.adobe.com.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Save the share link</h3>
+        <ol start="17">
+          <li>Paste the link into a comment on the Asana subtask: <code>[Project Name] &gt; Solicit Bids From Contractors &gt; Digitize the Proposal Form</code>. Mark that subtask as complete.</li>
+          <li>Open the <strong>RFP Links file</strong> (<code>Operations &gt; Agreements &amp; Contracts &gt; RFP-Request for Proposals &gt; [project folder] &gt; Emails &amp; Communications &gt; [Links file]</code>).</li>
+          <li>Paste the Adobe form link under the <strong>"Digital Proposal Form"</strong> section of the links file.</li>
+          <li>Save the links file.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 7 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-7">
+        Phase 7: Upload PDFs to Squarespace
+        <span class="badge">Digital Prep</span>
+      </h2>
+
+      <div class="content-block">
+        <p>This step generates hosted file links for all PDFs by uploading them through the Squarespace editor. You need backend access to Squarespace.</p>
+      </div>
+
+      <div class="callout info">
+        <p><strong>Why this works the way it does:</strong> Squarespace doesn't have a standalone file upload tool. The only way to upload a file and get a hosted link is through a block that accepts file attachments (like a Button block). So we temporarily add a button, use it to upload each file and copy the generated link, then delete the button. The files remain hosted on Squarespace even after the button is removed.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Upload files via Button block</h3>
+        <ol>
+          <li>Navigate to the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>.</li>
+          <li>In the left navigation, go to <strong>Website &gt; Pages</strong>.</li>
+          <li>Scroll down and find the <strong>Right of Entry</strong> page (under Resources). Select it.</li>
+          <li>Click <strong>Edit</strong> and scroll down to the first section below the banner.</li>
+          <li>Add a <strong>Button block</strong> (placement doesn't matter; it will be deleted).</li>
+          <li>Double-click the button to open the edit dialog. Click <strong>Attach Link</strong>.</li>
+          <li>Use the dropdown (currently says "URL") and change it to <strong>File</strong>.</li>
+          <li>Click <strong>Upload</strong> and navigate to the PDF folder for your project. Select the <strong>SOW</strong> file.</li>
+          <li>Click out of the button editor, then click back into it. Click <strong>Copy</strong> to copy the generated file link.</li>
+          <li>Paste that link into the <strong>SOW section</strong> of the RFP Links file.</li>
+          <li>Click <strong>Remove Link</strong> (in the button editor).</li>
+          <li><strong>Repeat steps 6-11</strong> for:
+            <ul>
+              <li>The RFP document</li>
+              <li>The Project Map</li>
+              <li>The PRINT Contractor Proposal Form</li>
+              <li>Save each link to the appropriate section of the Links file.</li>
+            </ul>
+          </li>
+          <li>Save the Links file when all four links have been added.</li>
+          <li><strong>Delete the button block</strong> from the page and exit the editor.</li>
+          <li>Go to the Asana subtask: <code>[Project Name] &gt; Solicit Bids From Contractors &gt; Upload all documents to the website in PDF format</code>. Mark it complete.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 8 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-8">
+        Phase 8: Create the RSVP Link
+        <span class="badge">Digital Prep</span>
+      </h2>
+
+      <div class="content-block">
+        <p>Have the RFP and SOW open for reference (you'll need dates and location info).</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Create RSVP event and save links</h3>
+        <ol>
+          <li>Browse to <a href="https://www.easy-rsvp.com/" style="color: var(--accent);">Easy-RSVP.com</a>.</li>
+          <li>Under "What Are You Planning," enter: <code>[Project Name] Contractor Walkthrough</code></li>
+          <li>Select the date of the walkthrough.</li>
+          <li>Click <strong>"Add Time"</strong> and select the walkthrough time.</li>
+          <li>In the <strong>"More Details"</strong> section, write something like: <code>Please meet at [Time] at [Location] on [Date]</code></li>
+          <li>Look up the site walk location address on Google Maps, copy the share link, and make the location name in the More Details section a <strong>clickable hyperlink</strong> pointing to that Google Maps URL.</li>
+          <li>Click <strong>Create Event for Free</strong>.</li>
+          <li><strong>Copy the "Super Secret Admin" link</strong> and paste it into the Asana subtask: <code>[Project Name] &gt; Solicit Bids From Contractors &gt; Create RSVP Link</code>. Mark that task complete.</li>
+          <li><strong>Copy the invite link</strong> and paste it into the RFP Links file under the <strong>RSVP Link</strong> section. Save the file.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 9 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-9">
+        Phase 9: Create and Schedule the RFP Announcement Email
+        <span class="badge">Outreach</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>Prerequisites:</strong> Access to Bloomerang. Have the RFP and SOW files open for reference.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Build the email</h3>
+        <ol>
+          <li>Navigate to <a href="https://crm.bloomerang.co/Mailing/Email/Template" class="inline-link" target="_blank">Bloomerang Email Templates</a>.</li>
+          <li>Go to <strong>Communications &gt; Emails</strong>.</li>
+          <li>Select <strong>New Email &gt; Saved Templates &gt; "RFP Initial Invitation Email Template"</strong>.</li>
+          <li>Name the email: <code>[MM.DD.YYYY] - RFP-#### [Project Name] - Initial Invitation Email</code> (Use the date the email will be sent.)</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Fill in the Header tab</h3>
+        <ol start="5">
+          <li>Edit the subject line to reflect the current project's RFP number and name.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Fill in the Design tab</h3>
+        <ol start="6">
+          <li><strong>Top section:</strong> Enter the project name.</li>
+          <li><strong>Body section</strong>, fill in these fields from the RFP and SOW:
+            <ul>
+              <li>Project name with grant short code</li>
+              <li>Round number and grant code</li>
+              <li>Full grant number (found in the SOW)</li>
+              <li>In the <code>[Enter project short description here]</code> placeholder: paste the <strong>"Project Goal"</strong> paragraph from the SOW. Make sure it has spacing above and below it.</li>
+              <li>Proposal deadline dates and times</li>
+              <li>In <code>[Enter project location here]</code>: paste the linked location text from the RSVP page (this should include the address with the embedded Google Maps link)</li>
+            </ul>
+          </li>
+          <li><strong>Buttons</strong>, paste links from the Links file:
+            <ul>
+              <li>RSVP Now button: paste the RSVP invite link</li>
+              <li>View RFP button: paste the RFP PDF link</li>
+              <li>Scope of Work (Exhibit A) button: paste the SOW link</li>
+              <li>Project Map (Exhibit B) button: paste the map link</li>
+              <li>Fill Out Form Online button: paste the Adobe digital form link</li>
+              <li>Download and Print PDF button: paste the PRINT proposal form link</li>
+            </ul>
+          </li>
+          <li>Fill in the project name in the following paragraph.</li>
+          <li>Fill in the project timeline dates in the timeline section.</li>
+          <li>Fill in the questions deadline in the final paragraph.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Review and send for approval</h3>
+        <ol start="12">
+          <li><strong>Preview</strong> the email. Click every button and link to verify they work.</li>
+          <li>Send a <strong>test email</strong> to Laura and Noa.</li>
+          <li>Tag them in the relevant Asana task to notify them the test has been sent.</li>
+          <li><strong>Save</strong> the email.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <h3>Set recipients and schedule</h3>
+        <ol start="16">
+          <li>Once approved, go to the <strong>Recipients</strong> tab.</li>
+          <li>Choose <strong>"Contractor Updates"</strong> as the interest.</li>
+          <li>Search <strong>Groups</strong> and select <strong>"Pre-Qualified Contractors"</strong>.</li>
+          <li>Click <strong>Preview</strong> (top right), then <strong>Send &gt; Schedule Later</strong>.</li>
+          <li>Schedule for the release date at <strong>8:30 AM</strong>.</li>
+          <li>In the Asana task, comment that the email has been scheduled. Mark the task complete.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 10 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-10">
+        Phase 10: Create the RFP Web Card
+        <span class="badge">Outreach</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>Prerequisites:</strong> Squarespace access, Claude account. This step should be completed on the release day (the card should not go live before then). You can generate the code beforehand and save it for pasting on the day of release.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Generate the web card HTML using Claude</h3>
+        <ol>
+          <li>Open Claude in your browser.</li>
+          <li>If this is your first time, start a new chat and paste the prompt below. If you've done this before, you can reuse the existing chat by asking Claude to create a new web card and attaching the files.</li>
+          <li><strong>Attach the following files to the chat:</strong> the RFP document, the SOW (Exhibit A), and the Links file.</li>
+        </ol>
+
+        <details>
+          <summary>Full Claude prompt for RFP web card generation</summary>
+          <div class="details-content">
+            <pre>I need you to build an HTML "RFP web card" for CLERC that I can paste into a Squarespace code block. I'm attaching the RFP document, the Scope of Work (Exhibit A), and a list of links. Produce ONLY the finished HTML, ready to paste. Do not restyle anything or invent CSS, the card inherits its styling from classes already on our site.
+
+Use this exact template and fill in every value from the attached documents. Keep all class names exactly as written:
+
+[... full HTML template as documented ...]
+
+Rules for filling it in:
+- Pull the schedule dates, site visit location, grant number, and scope language from the RFP document. Pull the acreage and the project location from the SOW (Exhibit A).
+- Grant number: write it in the form 23-DG-11052012-457 (digits only, not "CWDG-1" or "Round 1").
+- Map the five links I give you to the five buttons by their labels. The Adobe "esignWidget" link is the online form, the "PRINT" PDF is the download-and-print form.
+- Use the correct spelling of the project/road name throughout, even if the source doc has a typo.
+- Write out the day of week with each date (e.g. "Friday, October 16, 2026 at 5:00 PM").
+- Never use em dashes. Use commas, ellipses, or periods.
+
+Before you give me the HTML, flag any of these if you spot them: the grant number or project name is inconsistent between the RFP and the SOW; the exhibit filenames reference a different phase or project; or a stated deadline falls on a weekend. List those as short notes after the code, don't fix them silently.</pre>
+          </div>
+        </details>
+
+        <ol start="4">
+          <li>Claude will output a block of HTML. Save it (in Visual Studio Code or a Word doc in the Emails &amp; Communications folder) if you're not posting it today.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Post the web card to Squarespace</h3>
+        <ol start="5">
+          <li>Open the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>. Navigate to <strong>Pages &gt; Contractor Interest Form</strong>. Click <strong>Edit</strong>.</li>
+          <li>Scroll down to the <strong>Current RFPs</strong> section.</li>
+          <li>Click the section containing the existing web card code block. The code editor should open.</li>
+          <li>Scroll to the bottom of the existing code. Paste the new web card HTML between the closing <code>&lt;/div&gt;</code> and <code>&lt;/section&gt;</code> tags.</li>
+          <li>The new card should appear on the page behind the code editor. Verify it looks correct.</li>
+          <li><strong>Save</strong> the page.</li>
+          <li>Open the page in another tab and test all buttons.</li>
+          <li>Once both the email and web card are live on release day, mark the Asana subtask <strong>"Send RFP announcement to contractors and post on website"</strong> as complete.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 11 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-11">
+        Phase 11: Create and Schedule the Pre-Site Visit Reminder Email
+        <span class="badge">Outreach</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>Prerequisites:</strong> Bloomerang access. Have the RFP document and Links file open.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Create the email</h3>
+        <ol>
+          <li>Open <a href="https://crm.bloomerang.co/Mailing/Email/Template" class="inline-link" target="_blank">Bloomerang Email Templates</a>.</li>
+          <li>Select <strong>New Email &gt; Saved Templates &gt; "RFP Site Visit Reminder (day before) Template"</strong>.</li>
+          <li>Name the email: <code>[MM.DD.YYYY] - RFP-#### [Project Name] - Site Visit Reminder Email</code></li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Fill in the email</h3>
+        <ol start="4">
+          <li><strong>Header tab:</strong> Edit to reflect the current RFP.</li>
+          <li><strong>Design tab:</strong>
+            <ul>
+              <li>Top section bold header: <code>Site Visit Tomorrow [Date] at [Time]</code></li>
+              <li>Subtext below: Enter the project name</li>
+              <li>First body paragraph: Fill in the project name where specified</li>
+              <li>Site visit location: Copy from the RSVP page (include the embedded Google Maps link)</li>
+              <li>RSVP Now button: Paste the RSVP link from the Links file</li>
+              <li>Blue info box below: Enter site visit details and paste the location link again</li>
+              <li>View RFP, Scope of Work, and Project Map buttons: Paste appropriate links</li>
+              <li>Key Dates box: Fill in project dates</li>
+              <li>Questions deadline: Fill in where specified</li>
+              <li>Fill Out Form Online and Print buttons: Paste appropriate links</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Review and schedule</h3>
+        <ol start="6">
+          <li>Preview the email. Test all links.</li>
+          <li>Send a test email to Noa and Laura.</li>
+          <li><strong>Recipients tab:</strong> Select "Contractor Updates" interest, then search Groups &gt; "Pre-Qualified Contractors."</li>
+          <li>Save the email.</li>
+          <li>Tag Noa and Laura in the Asana subtask: <code>Solicit Bids From Contractors &gt; Pre-visit site reminder email</code>. Let them know the test is in their inbox for review.</li>
+          <li>Once approved, <strong>schedule the email for the day before the site visit</strong>.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 12 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-12">
+        Phase 12: Attend the Job Walk and Draft the Q&amp;A Document
+        <span class="badge">Site Visit</span>
+      </h2>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Before the job walk</h3>
+        <ol>
+          <li>Check how many contractors have RSVPd.</li>
+          <li>Print and update (fill in all highlighted fields) the following from the templates folder:
+            <ul>
+              <li>Job Walk Sign-In Sheet</li>
+              <li>Bid Walk Agenda</li>
+            </ul>
+          </li>
+          <li>Print packets containing the RFP, SOW, and Map stapled together. Print enough for:
+            <ul>
+              <li>All confirmed contractors</li>
+              <li>All attending staff</li>
+              <li>2-3 extras for unannounced attendees</li>
+            </ul>
+          </li>
+          <li>Bring all printed materials and pens.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>During the job walk</h3>
+        <ol start="5">
+          <li><strong>Your primary job is to record all questions asked and answers given.</strong> Questions mostly come from contractors, but the stewardship team may also provide important project information unprompted.</li>
+          <li>At the start of the walk, the stewardship team will clarify the prescription and give a safety briefing. Take notes on this information for the Q&amp;A document (there are dedicated sections for it).</li>
+          <li>After the stewardship overview, give a brief summary of project deadlines. This gives contractors a chance to ask timeline-related questions.</li>
+        </ol>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>After the job walk: drafting the Q&amp;A</h3>
+        <ol start="8">
+          <li>Find the most recently completed Q&amp;A file from a previous RFP project and copy it into your current RFP project folder. There is no blank Q&amp;A template; completed Q&amp;A files from past projects serve as the template. If you're unsure which project was most recent, check the RFP folders in <code>Operations &gt; Agreements &amp; Contracts &gt; RFP-Request for Proposals</code> in descending order.</li>
+          <li><strong>Rename the file</strong> to: <code>RFP-#### [Project Name] Q&amp;A</code> and update all headers/footers to the current project.</li>
+          <li>Review the "Clarifying Prescription" and "Safety Briefing" sections. Much of this can often be reused between projects. Remove anything that doesn't apply and add your new notes.</li>
+          <li><strong>Delete all questions from the previous project.</strong></li>
+          <li>Add the questions and answers you recorded. Match the tone and language style of previous Q&amp;A documents (review past ones to get a feel for it).</li>
+          <li>Save the file in the main RFP project folder.</li>
+          <li>In Asana, go to the subtask <strong>"Draft Q&amp;A and have reviewed"</strong> under Solicit Bids From Contractors. Tag Laura with a comment that the Q&amp;A is drafted and ready for review. Include a Google Drive link to the file.</li>
+          <li>Laura (or another ops member) will create review subtasks assigned to Cindy, Tracy, Teresa, Will, or other relevant reviewers.</li>
+          <li>Once all reviewers have approved and edits are incorporated, do a final review. Double-check that no last-minute questions have come in via email.</li>
+          <li>Mark the subtask complete.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 13 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-13">
+        Phase 13: Post Q&amp;A to Website and Send Q&amp;A Email
+        <span class="badge">Site Visit</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>Prerequisites:</strong> The Q&amp;A document must be fully reviewed and approved. You need Bloomerang access, Squarespace editing access, and a Claude account. Have the approved Q&amp;A document, Links file, and RFP open.</p>
+        <p><strong>Timing:</strong> The Q&amp;A is posted and emailed on the day the questions deadline closes, after the deadline has passed.</p>
+      </div>
+
+      <h3 class="sub-heading">Part 1: Generate the Q&amp;A HTML using Claude</h3>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Generate the accordion HTML</h3>
+        <ol>
+          <li>Open Claude in your browser.</li>
+          <li>Paste the full prompt below and attach the project RFP, SOW, and Links file.</li>
+        </ol>
+
+        <details>
+          <summary>Full Claude prompt for Q&amp;A accordion generation</summary>
+          <div class="details-content">
+            <pre>You are generating a contractor-facing Q&amp;A accordion section for the CLERC website. I am attaching the RFP document, Scope of Work, and any supporting files. Use only the content from those documents -- do not paraphrase, reword, or correct grammar. The approved text must appear exactly as written.
+
+Generate the HTML using this structure for each item:
+
+[... full HTML template as documented ...]
+
+Rules:
+- Copy all question and answer text verbatim from the source document. Do not fix spelling, grammar, or phrasing.
+- Pull the proposal deadline from the RFP document and format it as: Day, Month Date, Year by Time.
+- Use &amp;rsquo; for apostrophes, &amp;ldquo; and &amp;rdquo; for quotation marks, &amp;ndash; for dashes.
+- If the Safety briefing is a bulleted list, render each bullet as &lt;li&gt;&lt;strong&gt;[Hazard label]:&lt;/strong&gt; [text]&lt;/li&gt; inside a &lt;ul&gt;.
+- If the Scope of Work or Rights of Entry sections are informational (not a Q&amp;A pair), still wrap them as accordion items using the heading as the question text.
+- If a paragraph break exists in the source, use &lt;br&gt;&lt;br&gt; between paragraphs in the answer.
+- If a hyperlink appears in the source, render it as a standard &lt;a href="[URL]"&gt;[link text]&lt;/a&gt;.
+- Do not add any commentary unless there is an obvious spelling error or inconsistency, in which case ask whether to fix it.</pre>
+          </div>
+        </details>
+
+        <ol start="3">
+          <li>Save Claude's output for posting.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">Part 2: Add the Q&amp;A to Squarespace</h3>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Open Squarespace and prepare the page</h3>
+        <ol start="4">
+          <li>Open the <a href="https://opossum-rust-x3xz.squarespace.com/config/pages" class="inline-link" target="_blank">Squarespace Pages dashboard</a>. Navigate to <strong>Pages &gt; RFP Q&amp;A &gt; Edit</strong>.</li>
+          <li>Scroll past the General FAQ section.</li>
+        </ol>
+      </div>
+
+      <div class="content-block">
+        <h3>If old Q&amp;A sections need archiving (for projects already awarded):</h3>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Archive outdated Q&amp;A sections</h3>
+        <ol start="6">
+          <li>Remove any navigation buttons for awarded projects and rearrange remaining buttons if needed.</li>
+          <li>For each outdated Q&amp;A section: click just outside the code block (on the section itself, not the code block within it). A popup starting with "Edit Section" should appear.</li>
+          <li>Click the <strong>heart icon</strong> at the bottom of the popup. Select <strong>"Save section to this site."</strong> This saves the entire section for reuse on another page.</li>
+          <li>Delete the old section from the page.</li>
+        </ol>
+      </div>
+
+      <div class="content-block">
+        <h3>Adding the new Q&amp;A section:</h3>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Add blank section and code block</h3>
+        <ol start="10">
+          <li>Below the most recent Q&amp;A section, click the blue <strong>"Add Section"</strong> bar.</li>
+          <li>Choose <strong>"+ Add Blank Section"</strong> from the left menu.</li>
+          <li>Hover over the new blank section. Click <strong>"Edit Section"</strong>.</li>
+          <li>Toggle <strong>off</strong> the "Fill Screen" option.</li>
+          <li>In the <strong>"Anchor Link"</strong> text box, enter a short unique identifier with no spaces, e.g., <code>#pointlakeviewphase3</code></li>
+          <li>Exit the Edit Section dialog.</li>
+          <li>Hover over the section and click <strong>"Add Block"</strong> (top left).</li>
+          <li>Scroll down and select <strong>"&lt;/&gt; Code"</strong>.</li>
+          <li>Drag the code block to two rows below the top of the section. Stretch its width to the right edge.</li>
+          <li>Double-click the code block to open the editor. Delete the default <code>&lt;p&gt;Hello, World!&lt;/p&gt;</code> text.</li>
+          <li>Paste the Q&amp;A HTML from Claude.</li>
+          <li>The styled Q&amp;A accordion should appear on the page.</li>
+        </ol>
+      </div>
+
+      <div class="content-block">
+        <h3>Add a navigation button:</h3>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <h3>Create navigation button and save links</h3>
+        <ol start="22">
+          <li>Hover over the section again. Click <strong>"Edit Section"</strong>, then click the <strong>copy icon</strong> next to the anchor link name.</li>
+          <li>Scroll up to the <strong>"Project Specific FAQs"</strong> button area.</li>
+          <li>Add a new <strong>Button block</strong> and position it appropriately.</li>
+          <li>Double-click the button, click <strong>"Attach Link"</strong>, and paste the anchor link you copied. This makes the button scroll to the Q&amp;A section.</li>
+          <li>Change the button text from "Learn More" to: <code>RFP-#### [Project Name]</code></li>
+          <li>Copy the anchor link and paste it into the Links file under the Q&amp;A section. Save the file.</li>
+          <li><strong>Save</strong> the Squarespace page.</li>
+          <li>Open the page on the front end and verify all accordions expand/collapse and links work.</li>
+        </ol>
+      </div>
+
+      <div class="content-block">
+        <h3>If you archived sections, add them to the archive page:</h3>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <h3>Restore archived sections to archive page</h3>
+        <ol start="30">
+          <li>Find the <strong>"Archived RFP FAQs"</strong> page in Squarespace. Click Edit.</li>
+          <li>Scroll to the bottom and click <strong>"Add Section"</strong>.</li>
+          <li>Select <strong>"Saved"</strong> from the left menu.</li>
+          <li>Select the Q&amp;A section(s) you saved earlier (add them in order from oldest to most recent if multiple).</li>
+          <li>Verify they display correctly. Save and exit.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">Part 3: Create and send the Q&amp;A reminder email</h3>
+
+      <div class="step-card">
+        <div class="step-num">7</div>
+        <h3>Build and send the Q&amp;A email</h3>
+        <ol start="35">
+          <li>Open <a href="https://crm.bloomerang.co/Mailing/Email/Template" class="inline-link" target="_blank">Bloomerang Email Templates</a>. Create a new email using the template <strong>"RFP Q&amp;A Email Template"</strong>.</li>
+          <li><strong>Header tab:</strong> Fill in the relevant RFP info.</li>
+          <li><strong>Design tab:</strong>
+            <ul>
+              <li>Project name in the top section subtext</li>
+              <li>RFP info in the specified body area</li>
+              <li>"Read Full Q&amp;A" button: paste the Q&amp;A link from the Links file</li>
+              <li>Proposal deadline section: fill in project dates</li>
+              <li>Remaining buttons: paste appropriate links from the Links file</li>
+            </ul>
+          </li>
+          <li>Preview the email and test all links.</li>
+          <li>Send a test email to Noa and Laura. Notify them in the appropriate Asana subtask.</li>
+          <li><strong>Recipients tab:</strong> Select "Contractor Updates" interest, then Groups &gt; "Pre-Qualified Contractors."</li>
+          <li>Save the email.</li>
+          <li>Once approved, schedule or send it as soon as possible after the questions deadline has closed.</li>
+        </ol>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- INTERIM -->
+      <!-- ============================================ -->
+      <div class="interim-section" id="interim">
+        <h2 class="section-header">
+          Interim: Accepting Incoming Bids
+          <span class="badge interim-badge">Ongoing</span>
+        </h2>
+
+        <div class="callout warn">
+          <p>This happens throughout the bid period and does not have a specific place in the sequence. As bids come in, handle them promptly.</p>
+        </div>
+
+        <h3 class="sub-heading">Saving received bids</h3>
+
+        <div class="step-card">
+          <div class="step-num" style="background: var(--warm);">1</div>
+          <h3>Download and organize bids</h3>
+          <ol>
+            <li>As contractor bids arrive at <code>documents@theclerc.org</code>, download the PDF of each bid form.</li>
+            <li>Prefix the contractor name to the file name for easy identification, e.g., <code>[Contractor Name] RFP-####-[Project Name] - Contractor Proposal Form.pdf</code></li>
+            <li>Save to: <code>Operations &gt; Agreements &amp; Contracts &gt; RFP-Request for Proposals &gt; [Project Folder] &gt; Proposals for Evaluation</code></li>
+            <li>Either after 5:00 PM on the bid due date, or first thing the following Monday morning, do a final sweep of the <code>documents@theclerc.org</code> inbox to make sure all received bids have been saved.</li>
+          </ol>
+        </div>
+
+        <h3 class="sub-heading">Proposal Evaluation Spreadsheet (usually handled by Laura)</h3>
+
+        <div class="callout info">
+          <p>This is typically Laura's responsibility, but good to understand.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num" style="background: var(--warm);">2</div>
+          <h3>Manage the evaluation spreadsheet</h3>
+          <ol start="5">
+            <li>The Proposal Evaluation Form Template (Excel) is in the templates folder. A copy should already exist in the <code>Proposals for Evaluation</code> subfolder (created when the RFP folder structure was set up).</li>
+            <li>If not already there, copy it over and rename with the project name prefix.</li>
+            <li>As each bid comes in, open the spreadsheet and go to the <strong>"At a Glance"</strong> tab.</li>
+            <li>Starting from left to right, fill in the contractor name at the top of the next empty column, then enter the relevant information from their proposal beneath.</li>
+            <li>Right-click the <strong>"Master Scoring"</strong> tab and select <strong>Hide</strong> so no one accidentally edits it during scoring.</li>
+            <li>After all bids are submitted, assign the bid for scoring. The typical reviewers are <strong>Laura, Will, Tracy, Cindy, and Teresa</strong>. Laura usually creates an Asana subtask for each reviewer so they know when it's their turn to score.</li>
+            <li>Each reviewer fills in their individual scoring tab. Scores auto-populate in the <strong>Master Scoring</strong> tab for an objective comparison.</li>
+            <li>Save the file after adding information.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PHASE 14 -->
+      <!-- ============================================ -->
+      <h2 class="section-header" id="phase-14">
+        Phase 14: Send Award and No Award Emails
+        <span class="badge">Closing</span>
+      </h2>
+
+      <div class="content-block">
+        <p><strong>Prerequisites:</strong> Leadership has met, scored the proposals, and chosen a contractor. The award decision should be documented in Asana (Laura will comment who was awarded the contract).</p>
+      </div>
+
+      <h3 class="sub-heading">Award Email</h3>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Create the Award Email</h3>
+        <ol>
+          <li>In <a href="https://crm.bloomerang.co/Mailing/Email/Template" class="inline-link" target="_blank">Bloomerang Email Templates</a>, create a new email using the template <strong>"New RFP Contract Award Email Template"</strong>.</li>
+          <li>Name it: <code>[MM.DD.YYYY] - RFP-#### [Project Name] - Contract AWARD [Contractor Name]</code><br>
+          (Typically sent on the Friday of the anticipated award date from the RFP, but may be earlier if urgency requires it.)</li>
+          <li><strong>Header tab:</strong> Fill in the relevant project info.</li>
+          <li><strong>Design tab:</strong>
+            <ul>
+              <li>Top section: project name</li>
+              <li>First body paragraph: project name in specified location</li>
+              <li>Contractor name: enter the name of the awarded contractor</li>
+            </ul>
+          </li>
+          <li><strong>Recipients tab:</strong>
+            <ul>
+              <li>Select "Contractor Updates" for interest</li>
+              <li>Under Constituent Filters, click <strong>Add Filter</strong></li>
+              <li>Search "name" and select it. Type <strong>Will Evans</strong> and click OK. Verify <code>will.evans@theclerc.org</code> appears.</li>
+              <li>Click the green <strong>"Or"</strong> button. Add <strong>Teresa Mayorga</strong> the same way. Verify.</li>
+              <li>Click <strong>"Or"</strong> again. Add the <strong>winning contractor's name</strong> (e.g., "Environmental Resource Services" or "Falk Forestry"). Verify the correct entity appears.</li>
+            </ul>
+          </li>
+          <li>Send a test email to Noa and Laura.</li>
+          <li><strong>Save</strong> the email and return to the main Bloomerang emails page.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">No Award Email</h3>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Create the No Award Email</h3>
+        <ol start="8">
+          <li>Create a new email using the template <strong>"RFP NO Contract Award Email Template"</strong>.</li>
+          <li>Name it: <code>[MM.DD.YYYY] - RFP-#### [Project Name] - Contract NO AWARD Email</code></li>
+          <li><strong>Header tab:</strong> Fill in the relevant info.</li>
+          <li><strong>Design tab:</strong> Fill in the project name and relevant information where noted.</li>
+          <li><strong>Recipients tab:</strong>
+            <ul>
+              <li>Select "Contractor Updates" for interest</li>
+              <li>Add <strong>Will Evans</strong> and <strong>Teresa Mayorga</strong> using the filter process above.</li>
+              <li>Open the <code>Proposals for Evaluation</code> folder in Drive to see which contractors submitted bids.</li>
+              <li>Using the green "Or" button, add each contractor who bid <strong>except</strong> the one who was awarded. Verify each one as you add them.</li>
+            </ul>
+          </li>
+          <li>Save the email.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">Send for approval and schedule</h3>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Approve and send both emails</h3>
+        <ol start="14">
+          <li>Send test emails for both the Award and No Award emails to Noa and Laura.</li>
+          <li>Tag them in the Asana task (usually titled <strong>"Email to contractors re: decision"</strong> under the "Contracting" section).</li>
+          <li>Once both emails are approved, schedule them for the appropriate time.</li>
+          <li>Mark the Asana task as complete.</li>
+        </ol>
+      </div>
+
+      <h3 class="sub-heading">Post-Award Website Cleanup</h3>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Clean up the website</h3>
+        <ol start="18">
+          <li><strong>Remove the web card</strong> from the Contractor Interest Form page on Squarespace so the RFP is no longer listed as active.</li>
+          <li><strong>Archive the Q&amp;A page:</strong> Move (or copy) the Q&amp;A content to the <strong>Archived RFP FAQs</strong> page so it remains accessible for reference but is no longer displayed as current.</li>
+        </ol>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
